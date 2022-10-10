@@ -1,6 +1,6 @@
 # patternpod
 
-A new Flutter project.
+A Flutter project project template with Riverpod and GO Router.
 
 ## Getting Started
 
