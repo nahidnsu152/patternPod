@@ -8,7 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'application/global.dart';
 import 'router/router.dart';
 import 'theme/theme.dart';
-import 'utils/api_routes.dart';
+import 'server/api_routes.dart';
+import 'utils/dismiss_keyboard.dart';
 import 'utils/strings.dart';
 
 Future<void> main() async {
@@ -52,33 +53,35 @@ class MyApp extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mode = ref.watch(themeProvider).theme;
     final router = ref.watch(routerProvider);
-    return ScreenUtilInit(
-      designSize: const Size(411.4, 843.4),
-      builder: (context, child) {
-        return GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: MaterialApp.router(
-            title: KStrings.appName,
-            debugShowCheckedModeBanner: false,
-            themeMode: mode.isEmpty
-                ? ThemeMode.system
-                : mode == "dark"
-                    ? ThemeMode.dark
-                    : ThemeMode.light,
-            theme: MyTheme.lightTheme,
-            darkTheme: MyTheme.darkTheme,
-            scaffoldMessengerKey: ref.watch(scaffoldKeyProvider),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
-            scrollBehavior: const ScrollBehavior().copyWith(
-              physics: const BouncingScrollPhysics(),
+    return DismissKeyboard(
+      child: ScreenUtilInit(
+        designSize: const Size(411.4, 843.4),
+        builder: (context, child) {
+          return GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: MaterialApp.router(
+              title: KStrings.appName,
+              debugShowCheckedModeBanner: false,
+              themeMode: mode.isEmpty
+                  ? ThemeMode.system
+                  : mode == "dark"
+                      ? ThemeMode.dark
+                      : ThemeMode.light,
+              theme: MyTheme.lightTheme,
+              darkTheme: MyTheme.darkTheme,
+              scaffoldMessengerKey: ref.watch(scaffoldKeyProvider),
+              routeInformationProvider: router.routeInformationProvider,
+              routeInformationParser: router.routeInformationParser,
+              routerDelegate: router.routerDelegate,
+              scrollBehavior: const ScrollBehavior().copyWith(
+                physics: const BouncingScrollPhysics(),
+              ),
+              // home: child,
+              // builder: BotToastInit(),
             ),
-            // home: child,
-            // builder: BotToastInit(),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
