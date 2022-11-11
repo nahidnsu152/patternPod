@@ -7,7 +7,10 @@ class KStrings {
   static const String user = 'user';
 
   //? Homne Screen
-  static const String whereFrom = 'Where I am From';
-  static const String whereGoing = 'Where I am Going';
-  static const String search = 'Search';
+
+  //? Settings Screen
+  static const String settings = 'Settings';
+  static const String theme = 'Theme';
+
+
 }

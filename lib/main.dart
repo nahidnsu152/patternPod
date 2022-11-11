@@ -57,28 +57,25 @@ class MyApp extends HookConsumerWidget {
       child: ScreenUtilInit(
         designSize: const Size(411.4, 843.4),
         builder: (context, child) {
-          return GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            child: MaterialApp.router(
-              title: KStrings.appName,
-              debugShowCheckedModeBanner: false,
-              themeMode: mode.isEmpty
-                  ? ThemeMode.system
-                  : mode == "dark"
-                      ? ThemeMode.dark
-                      : ThemeMode.light,
-              theme: MyTheme.lightTheme,
-              darkTheme: MyTheme.darkTheme,
-              scaffoldMessengerKey: ref.watch(scaffoldKeyProvider),
-              routeInformationProvider: router.routeInformationProvider,
-              routeInformationParser: router.routeInformationParser,
-              routerDelegate: router.routerDelegate,
-              scrollBehavior: const ScrollBehavior().copyWith(
-                physics: const BouncingScrollPhysics(),
-              ),
-              // home: child,
-              // builder: BotToastInit(),
+          return MaterialApp.router(
+            title: KStrings.appName,
+            debugShowCheckedModeBanner: false,
+            themeMode: mode.isEmpty
+                ? ThemeMode.system
+                : mode == "dark"
+                    ? ThemeMode.dark
+                    : ThemeMode.light,
+            theme: MyTheme.lightTheme,
+            darkTheme: MyTheme.darkTheme,
+            scaffoldMessengerKey: ref.watch(scaffoldKeyProvider),
+            routeInformationProvider: router.routeInformationProvider,
+            routeInformationParser: router.routeInformationParser,
+            routerDelegate: router.routerDelegate,
+            scrollBehavior: const ScrollBehavior().copyWith(
+              physics: const BouncingScrollPhysics(),
             ),
+            // home: child,
+            // builder: BotToastInit(),
           );
         },
       ),
