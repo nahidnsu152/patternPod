@@ -27,7 +27,7 @@ Future<void> main() async {
   final api = CleanApi.instance;
 
   api.setup(baseUrl: APIRoute.baseURL, showLogs: true);
-  api.enableCache(box);
+  //api.enableCache(box);
 
   api.setToken(
     {'Authorization': 'Bearer ${box.get(KStrings.token, defaultValue: '')}'},

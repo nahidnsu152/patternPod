@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patternpod/utils/dimensions.dart';
-import 'package:patternpod/utils/size_constant.dart';
+
+import '../utils/size_constant.dart';
 
 class KListTile extends StatelessWidget {
   const KListTile({

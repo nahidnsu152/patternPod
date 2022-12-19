@@ -1,20 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:patternpod/utils/custom_style.dart';
-import 'package:patternpod/utils/size_constant.dart';
-import 'package:patternpod/utils/strings.dart';
-import 'package:patternpod/utils/text_theme_style_x.dart';
-import 'package:patternpod/widgets/k_buttons.dart';
-import 'package:patternpod/widgets/k_cached_network_image.dart';
-import 'package:patternpod/widgets/k_drop_down_button.dart';
-import 'package:patternpod/widgets/k_list_view_separated.dart';
-import 'package:patternpod/widgets/k_loader.dart';
 
 import '../../theme/theme.dart';
+import '../../utils/size_constant.dart';
+import '../../utils/strings.dart';
 import '../../widgets/k_list_tile.dart';
+import '../../utils/text_theme_style_x.dart';
+import '../../utils/custom_style.dart';
 
 class SettingsScreen extends HookConsumerWidget {
   const SettingsScreen({super.key});
