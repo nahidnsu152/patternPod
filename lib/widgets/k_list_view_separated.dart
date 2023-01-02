@@ -30,6 +30,7 @@ class KListViewSeparated extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: padding ??
           (scrollDirection == Axis.vertical
               ? EdgeInsets.symmetric(
