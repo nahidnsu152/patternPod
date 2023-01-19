@@ -82,6 +82,3 @@ class MyApp extends HookConsumerWidget {
     );
   }
 }
-
-
-// Path: lib\router\router.dart
