@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../theme/theme.dart';
 import '../../utils/size_constant.dart';
 import '../../utils/strings.dart';
+import '../../widgets/k_app_bar.dart';
 import '../../widgets/k_list_tile.dart';
 import '../../utils/text_theme_style_x.dart';
 import '../../utils/custom_style.dart';
@@ -14,9 +15,10 @@ class SettingsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkMode = useState(ref.read(themeProvider).theme == "dark");
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
+      appBar: const KAppBar(
+        titleText: 'Settings',
       ),
       body: Column(
         children: [
@@ -27,7 +29,7 @@ class SettingsScreen extends HookConsumerWidget {
               color: context.color.onSecondary,
               title: Text(
                 KStrings.theme,
-                style: context.profileTitleStyle,
+                style: context.titleStyle,
               ),
               trailing: Switch(
                 value: isDarkMode.value,
