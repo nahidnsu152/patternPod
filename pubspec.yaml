@@ -31,6 +31,7 @@ dependencies:
   hooks_riverpod: ^2.0.2
   iconly: ^1.0.1
   readmore: ^2.2.0
+  rive: ^0.10.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -42,6 +43,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/animations/
   fonts:
     - family: baiJamjuree
       fonts:
