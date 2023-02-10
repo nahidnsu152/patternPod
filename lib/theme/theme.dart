@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../application/local_storage/storage_handler.dart';
+import '../utils/utils.dart';
+
 final themeProvider = ChangeNotifierProvider<ThemeController>((ref) {
   final database = ref.watch(databaseService);
   return ThemeController(database);
@@ -25,23 +28,25 @@ class ThemeController with ChangeNotifier {
 }
 
 //** DATABASE CLASS */
-final databaseService = Provider<DatabaseService>((_) => DatabaseService());
+final databaseService = Provider<DatabaseService>((ref) {
+  return DatabaseService(ref);
+});
 
 class DatabaseService {
-  late final Box<String> themeBox;
-  String get savedTheme => themeBox.values.first;
+  final Ref ref;
 
-  Future<void> initTheme() async {
-    await Hive.openBox<String>('theme').then((value) => themeBox = value);
-
-    //? first time loading
-    if (themeBox.values.isEmpty) {
-      themeBox.add('light');
-    }
+  DatabaseService(this.ref) {
+    initTheme();
   }
 
-  Future<void> toggleSaveTheme(String mode) async =>
-      await themeBox.put(0, mode);
+  get savedTheme => ref.watch(hiveProvider).get(KStrings.theme);
+
+  void initTheme() {
+    ref.watch(hiveProvider).put(KStrings.theme, 'light');
+  }
+
+  void toggleSaveTheme(String mode) =>
+      ref.watch(hiveProvider).put(KStrings.theme, mode);
 }
 
 class MyTheme {
@@ -112,5 +117,4 @@ class MyTheme {
 // If you do not have a themeMode switch, uncomment this line
 // to let the device system mode control the theme mode:
 // themeMode: ThemeMode.system,
-
 }

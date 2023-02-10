@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
 import 'package:patternpod/presentation/home/home_screen.dart';
@@ -22,64 +23,108 @@ class MainNav extends HookConsumerWidget {
     ];
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: navWidget[navIndex.value],
 
       //* Navigation Bar
-      // bottomNavigationBar: NavigationBar(
-      //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      //   elevation: 0,
-      //   key: bottomNavigatorKey,
-      //   selectedIndex: navIndex.value,
-      //   onDestinationSelected: (index) {
-      //     navIndex.value = index;
-      //   },
-      //   labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-      //   animationDuration: const Duration(milliseconds: 500),
-      //   destinations: const [
-      //     NavigationDestination(
-      //       icon: Icon(IconlyLight.home),
-      //       selectedIcon: Icon(
-      //         IconlyBold.home,
-      //       ),
-      //       label: 'Home',
-      //     ),
-      //     NavigationDestination(
-      //       icon: Icon(IconlyLight.profile),
-      //       selectedIcon: Icon(IconlyBold.profile),
-      //       label: 'Profile',
-      //     ),
-      //     NavigationDestination(
-      //       icon: Icon(IconlyLight.setting),
-      //       selectedIcon: Icon(IconlyBold.setting),
-      //       label: 'Settings',
-      //     ),
-
-      //   ],
-      // ),
-
-      //* BottomNavigationBar
-
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
         key: bottomNavigatorKey,
-        currentIndex: navIndex.value,
-        onTap: (index) {
+        selectedIndex: navIndex.value,
+        onDestinationSelected: (index) {
           navIndex.value = index;
         },
-        items: const [
-          BottomNavigationBarItem(
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        animationDuration: const Duration(milliseconds: 500),
+        destinations: const [
+          NavigationDestination(
             icon: Icon(IconlyLight.home),
+            selectedIcon: Icon(
+              IconlyBold.home,
+            ),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(IconlyLight.profile),
+            selectedIcon: Icon(IconlyBold.profile),
             label: 'Profile',
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(IconlyLight.setting),
+            selectedIcon: Icon(IconlyBold.setting),
             label: 'Settings',
           ),
         ],
       ),
+
+      //* BottomNavigationBar
+
+      // bottomNavigationBar: BottomNavigationBar(
+      //   key: bottomNavigatorKey,
+      //   currentIndex: navIndex.value,
+      //   onTap: (index) {
+      //     navIndex.value = index;
+      //   },
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(IconlyLight.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(IconlyLight.profile),
+      //       label: 'Profile',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(IconlyLight.setting),
+      //       label: 'Settings',
+      //     ),
+      //   ],
+      // ),
+
+      //* BottomNavigationBar with Rounded Corner
+      // bottomNavigationBar: Container(
+      //   decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.only(
+      //       topRight: Radius.circular(30.r),
+      //       topLeft: Radius.circular(30.r),
+      //     ),
+      //     boxShadow: const [
+      //       BoxShadow(
+      //         color: Colors.black38,
+      //         spreadRadius: 0,
+      //         blurRadius: 10,
+      //       ),
+      //     ],
+      //   ),
+      //   child: ClipRRect(
+      //     borderRadius: BorderRadius.only(
+      //       topLeft: Radius.circular(30.r),
+      //       topRight: Radius.circular(30.r),
+      //     ),
+      //     child: BottomNavigationBar(
+      //       key: bottomNavigatorKey,
+      //       currentIndex: navIndex.value,
+      //       onTap: (index) {
+      //         navIndex.value = index;
+      //       },
+      //       items: const [
+      //         BottomNavigationBarItem(
+      //           icon: Icon(Icons.favorite),
+      //           label: 'Favourite',
+      //         ),
+      //         BottomNavigationBarItem(
+      //           icon: Icon(Icons.favorite),
+      //           label: 'Favourite',
+      //         ),
+      //         BottomNavigationBarItem(
+      //           icon: Icon(Icons.favorite),
+      //           label: 'Favourite',
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

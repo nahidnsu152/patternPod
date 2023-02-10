@@ -1,46 +1,57 @@
+import 'dart:developer';
+
 import 'package:clean_api/clean_api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+
 import 'application/global.dart';
+import 'application/local_storage/storage_handler.dart';
 import 'router/router.dart';
 import 'theme/theme.dart';
 import 'server/api_routes.dart';
-import 'utils/dismiss_keyboard.dart';
-import 'utils/strings.dart';
+import 'utils/utils.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final container = ProviderContainer(
+    observers: [ProviderLog()],
+  );
 
   Logger.init(
     kDebugMode, // isEnable ，if production ，please false
     isShowFile: false, // In the IDE, whether the file name is displayed
     isShowTime: false, // In the IDE, whether the time is displayed
+    levelVerbose: 247,
+    levelDebug: 15,
+    levelInfo: 10,
+    levelWarn: 5,
+    levelError: 9,
+    phoneVerbose: Colors.white,
+    phoneDebug: Colors.lightBlue,
+    phoneInfo: Colors.greenAccent,
+    phoneWarn: Colors.yellow.shade600,
+    phoneError: Colors.redAccent,
   );
 
-  await Hive.initFlutter();
-  final box = await Hive.openBox(KStrings.cacheBox);
+  final box = container.read(hiveProvider);
+  await box.init();
 
-  final api = CleanApi.instance;
+  container.read(themeProvider);
 
-  api.setup(baseUrl: APIRoute.baseURL, showLogs: true);
-  //api.enableCache(box);
+  final String token = box.get(KStrings.token, defaultValue: '');
 
-  api.setToken(
-    {'Authorization': 'Bearer ${box.get(KStrings.token, defaultValue: '')}'},
-  );
+  NetworkHandler.instance
+    ..setup(baseUrl: APIRoute.baseURL, showLogs: false)
+    ..setToken(token);
 
-  final themeDatabaseService = DatabaseService();
-  await themeDatabaseService.initTheme();
+  Logger.d('token: $token');
 
   runApp(
     ProviderScope(
-      overrides: [
-        databaseService.overrideWithValue(themeDatabaseService),
-      ],
+      parent: container,
       child: const MyApp(),
     ),
   );
@@ -80,5 +91,22 @@ class MyApp extends HookConsumerWidget {
         },
       ),
     );
+  }
+}
+
+class ProviderLog extends ProviderObserver {
+  @override
+  void didUpdateProvider(
+    ProviderBase provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
+    Logger.i('''
+{
+  "PROVIDER": "${provider.name}; ${provider.runtimeType.toString()}"
+  
+}''');
+    log("$newValue");
   }
 }

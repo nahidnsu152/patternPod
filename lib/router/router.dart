@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../presentation/main_nav/main_nav.dart';
 import '../presentation/main_nav/main_nav_with_rive.dart';
+import '../presentation/onborad/onboard_screen.dart';
 import '../presentation/splash/splash_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -72,6 +73,10 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           path: SplashScreen.route,
           builder: (context, state) => const SplashScreen(),
+        ),
+        GoRoute(
+          path: OnboardScreen.route,
+          builder: (context, state) => const OnboardScreen(),
         ),
         GoRoute(
           path: MainNav.route,

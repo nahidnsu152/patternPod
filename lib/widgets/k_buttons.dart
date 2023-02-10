@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../utils/text_theme_style_x.dart';
-import '../utils/dimensions.dart';
+import '../utils/utils.dart';
 import 'widgets.dart';
 
 class KElevatedButton extends HookConsumerWidget {
@@ -25,8 +24,7 @@ class KElevatedButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: Dimensions.defaultHorizontalPadding),
+      padding: paddingH20,
       child: ElevatedButton(
         style: ButtonStyle(
           // shape: MaterialStateProperty.all(
