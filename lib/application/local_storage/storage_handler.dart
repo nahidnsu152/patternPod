@@ -3,11 +3,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../utils/strings.dart';
 
-
-final hiveProvider = Provider<StorageHandler>((_) => StorageHandler());
+final hiveProvider = Provider<StorageHandler>(
+  (_) => StorageHandler(),
+  name: "Hive Provider",
+);
 
 class StorageHandler {
-
   late Box _cacheBox;
 
   Future<void> init() async {
