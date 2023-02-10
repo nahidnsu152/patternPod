@@ -28,8 +28,6 @@ class SplashScreen extends HookConsumerWidget {
       return null;
     }, []);
 
-    var size = MediaQuery.of(context).size;
-    Logger.v('size: $size');
     return const Scaffold(
       body: Center(child: Text("Splash Screen")),
     );
