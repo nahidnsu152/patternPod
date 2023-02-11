@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:patternpod/application/global.dart';
 import 'package:patternpod/presentation/drawer/side_menu.dart';
 import 'package:patternpod/utils/text_theme_style_x.dart';
+import 'package:patternpod/utils/utils.dart';
 import 'package:patternpod/widgets/k_buttons.dart';
 
 import '../../widgets/k_app_bar.dart';
