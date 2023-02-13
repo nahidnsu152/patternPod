@@ -206,44 +206,15 @@ BorderRadius radius20 = BorderRadius.circular(20.r);
 BorderRadius radius22 = BorderRadius.circular(22.r);
 BorderRadius radius24 = BorderRadius.circular(24.r);
 
-Divider divider = Divider(
+final kDivider = Divider(
   height: 2.h,
   thickness: 1,
 );
 
-// class AddVerticalSpace extends StatelessWidget {
-//    AddVerticalSpace({
-//     Key? key,
-//     this.verticalSpace,
-//   }) : super(key: key);
-
-//   final double? verticalSpace;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(height: verticalSpace ?? Dimensions.defaultVerticalSpacing);
-//   }
-// }
-
-// class AddHorizontalSpace extends StatelessWidget {
-//    AddHorizontalSpace({
-//     Key? key,
-//     this.horizontalSpace,
-//   }) : super(key: key);
-
-//   final double? horizontalSpace;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//         width: horizontalSpace ?? Dimensions.defaultHorizontalSpacing);
-//   }
-// }
-
 MainAxisAlignment mainStart = MainAxisAlignment.start;
 MainAxisAlignment mainCenter = MainAxisAlignment.center;
 MainAxisAlignment mainEnd = MainAxisAlignment.end;
-MainAxisAlignment mainSpaceBet = MainAxisAlignment.spaceBetween;
+MainAxisAlignment mainSpaceBetween = MainAxisAlignment.spaceBetween;
 MainAxisAlignment mainSpaceEven = MainAxisAlignment.spaceEvenly;
 MainAxisAlignment mainSpaceAround = MainAxisAlignment.spaceAround;
 
