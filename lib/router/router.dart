@@ -31,7 +31,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 });
 
 class RouterNotifier extends ChangeNotifier {
-  final Ref _ref;
+  final Ref ref;
 
   // RouterNotifier(this._ref) {
   //   _ref.listen<String?>(
@@ -39,7 +39,7 @@ class RouterNotifier extends ChangeNotifier {
   //     (_, __) => notifyListeners(),
   //   );
   // }
-  RouterNotifier(this._ref) {
+  RouterNotifier(this.ref) {
     // _ref.listen<String?>(
     //   authProvider.select((value) => value.token),
     //   (_, __) => notifyListeners(),

@@ -206,11 +206,6 @@ BorderRadius radius20 = BorderRadius.circular(20.r);
 BorderRadius radius22 = BorderRadius.circular(22.r);
 BorderRadius radius24 = BorderRadius.circular(24.r);
 
-final kDivider = Divider(
-  height: 2.h,
-  thickness: 1,
-);
-
 MainAxisAlignment mainStart = MainAxisAlignment.start;
 MainAxisAlignment mainCenter = MainAxisAlignment.center;
 MainAxisAlignment mainEnd = MainAxisAlignment.end;
@@ -225,3 +220,8 @@ CrossAxisAlignment crossStart = CrossAxisAlignment.start;
 CrossAxisAlignment crossCenter = CrossAxisAlignment.center;
 CrossAxisAlignment crossend = CrossAxisAlignment.end;
 CrossAxisAlignment crossStretch = CrossAxisAlignment.stretch;
+
+final kDivider = Divider(
+  height: 2.h,
+  thickness: 1,
+);
