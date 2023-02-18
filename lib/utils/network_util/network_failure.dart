@@ -12,12 +12,12 @@ class CleanFailure extends Equatable {
   final bool _enableDialogue;
   final int statusCode;
 
-  const CleanFailure(
-      {required this.tag,
-      required this.error,
-      bool enableDialogue = true,
-      this.statusCode = -1})
-      : _enableDialogue = enableDialogue;
+  const CleanFailure({
+    required this.tag,
+    required this.error,
+    bool enableDialogue = true,
+    this.statusCode = -1,
+  }) : _enableDialogue = enableDialogue;
 
   CleanFailure copyWith({String? tag, String? error, int? statusCode}) {
     return CleanFailure(
