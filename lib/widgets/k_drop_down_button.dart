@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:patternpod/utils/size_constant.dart';
 import '../../utils/text_theme_style_x.dart';
 
 class KDropDownButton extends HookConsumerWidget {
@@ -19,14 +20,12 @@ class KDropDownButton extends HookConsumerWidget {
   build(BuildContext context, WidgetRef ref) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
-        dropdownElevation: 3,
         isExpanded: true,
         style: context.caption.copyWith(
           fontSize: 16.sp,
           color: context.theme.hintColor,
         ),
         value: list.value[selectedValue.value],
-        buttonPadding: EdgeInsets.only(left: 15.w),
         hint: Text(
           "Please Select",
           style: context.caption.copyWith(
@@ -34,10 +33,14 @@ class KDropDownButton extends HookConsumerWidget {
             color: context.headline6.color,
           ),
         ),
-        buttonDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(
-            color: context.theme.shadowColor.withOpacity(.3),
+        buttonStyleData: ButtonStyleData(
+          elevation: 3,
+          padding: paddingLeft16,
+          decoration: BoxDecoration(
+            borderRadius: radius8,
+            border: Border.all(
+              color: context.theme.shadowColor.withOpacity(.3),
+            ),
           ),
         ),
         onChanged: onChanged,
@@ -45,7 +48,9 @@ class KDropDownButton extends HookConsumerWidget {
           (e) {
             return DropdownMenuItem(
               value: e,
-              child: Text(e.toString()),
+              child: Text(
+                e.toString(),
+              ),
             );
           },
         ).toList(),
@@ -53,6 +58,3 @@ class KDropDownButton extends HookConsumerWidget {
     );
   }
 }
-
-
-

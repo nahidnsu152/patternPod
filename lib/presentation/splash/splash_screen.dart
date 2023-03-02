@@ -21,8 +21,8 @@ class SplashScreen extends HookConsumerWidget {
     useEffect(() {
       Future.delayed(const Duration(seconds: 2), () {
         isOnboardChecked
-            ? context.replace(MainNav.route)
-            : context.replace(OnboardScreen.route);
+            ? context.pushReplacement(MainNav.route)
+            : context.pushReplacement(OnboardScreen.route);
       });
       return null;
     }, []);

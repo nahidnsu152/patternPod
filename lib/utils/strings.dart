@@ -17,4 +17,10 @@ class KStrings {
   //? Settings Screen
   static const String settings = 'Settings';
   static const String theme = 'Theme';
+
+  //? Timeline
+  static const String confirmed = 'Confirmed';
+  static const String picked = 'Picked';
+  static const String outForDelivery = 'Out for delivery';
+  static const String delivered = 'Delivered';
 }

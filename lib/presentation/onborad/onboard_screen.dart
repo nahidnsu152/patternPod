@@ -25,7 +25,7 @@ class OnboardScreen extends HookConsumerWidget {
     void pageNavigate() {
       if (isLastPage) {
         ref.watch(hiveProvider).put(KStrings.onboardStorageKey, true);
-        context.replace(MainNav.route);
+        context.pushReplacement(MainNav.route);
       } else {
         pageController.nextPage(
           duration: const Duration(milliseconds: 300),
@@ -36,7 +36,7 @@ class OnboardScreen extends HookConsumerWidget {
 
     skipNavigate() {
       ref.watch(hiveProvider).put(KStrings.onboardStorageKey, true);
-      context.replace(MainNav.route);
+      context.pushReplacement(MainNav.route);
     }
 
     AnimatedContainer buildDot({int? index}) {
