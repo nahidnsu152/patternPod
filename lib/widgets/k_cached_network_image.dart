@@ -4,12 +4,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
-import 'package:patternpod/utils/text_theme_style_x.dart';
 
 import '../server/api_routes.dart';
-
-
-
+import '../utils/utils.dart';
 
 class KCachedNetworkImageNoBase extends StatelessWidget {
   const KCachedNetworkImageNoBase({
@@ -42,9 +39,8 @@ class KCachedNetworkImageNoBase extends StatelessWidget {
         maxWidth: width ?? double.infinity,
       ),
       child: CachedNetworkImage(
-        imageUrl: imageUrl.isNotEmpty
-            ? "${APIRoute.baseURL}$imageUrl"
-            : defaultImage,
+        imageUrl:
+            imageUrl.isNotEmpty ? "${APIRoute.baseURL}$imageUrl" : defaultImage,
         fit: fit,
         imageBuilder: (context, imageProvider) {
           return ClipRRect(

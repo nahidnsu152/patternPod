@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:patternpod/utils/text_theme_style_x.dart';
+
 import 'package:rive/rive.dart';
 
 import '../../domain/drawer/rive_asset.dart';
+import '../../utils/utils.dart';
 import '../../utils/rive_utils.dart';
 import 'info_card.dart';
 import 'side_menu_tile.dart';

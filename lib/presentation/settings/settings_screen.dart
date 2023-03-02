@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:patternpod/utils/utils.dart';
 
 import '../../theme/theme.dart';
+import '../../utils/utils.dart';
 import '../../widgets/k_app_bar.dart';
 import '../../widgets/k_list_tile.dart';
 

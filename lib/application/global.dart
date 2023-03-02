@@ -2,9 +2,10 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:patternpod/utils/utils.dart';
 
+import '../../utils/utils.dart';
 import '../theme/theme.dart';
+
 
 final scaffoldKeyProvider = Provider<GlobalKey<ScaffoldMessengerState>>((ref) {
   final GlobalKey<ScaffoldMessengerState> snackbarKey =

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
-import 'package:patternpod/presentation/home/home_screen.dart';
 
+import '../home/home_screen.dart';
 import '../settings/settings_screen.dart';
 
 final bottomNavigatorKey = GlobalKey<State<BottomNavigationBar>>();
