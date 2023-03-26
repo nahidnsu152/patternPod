@@ -9,6 +9,33 @@ extension StringCasingExtension on String {
       .join(' ');
 }
 
+extension ExtendedFlex on Flex {
+  int get childCount => children.length;
+}
+
+extension ExtendedText on Widget {
+  alignAtStart() {
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: this,
+    );
+  }
+
+  alignAtCenter() {
+    return Align(
+      alignment: AlignmentDirectional.center,
+      child: this,
+    );
+  }
+
+  alignAtEnd() {
+    return Align(
+      alignment: AlignmentDirectional.centerEnd,
+      child: this,
+    );
+  }
+}
+
 extension GlobalKeyExtension on GlobalKey {
   Rect get globalPaintBounds {
     final renderObject = currentContext?.findRenderObject();
