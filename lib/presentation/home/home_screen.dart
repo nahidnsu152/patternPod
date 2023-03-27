@@ -6,11 +6,12 @@ import '../../widgets/k_app_bar.dart';
 import '../../widgets/widgets.dart';
 import '../drawer/side_menu.dart';
 
-
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final time = DateTime.now();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const KAppBar(
@@ -29,6 +30,7 @@ class HomeScreen extends HookConsumerWidget {
               style: context.titleLarge,
             ),
           ),
+          Text(time.time24Hours()),
           KElevatedButton(
             onPressed: () {
               // showNotification(title: "Nahid");

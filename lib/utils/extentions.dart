@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 extension StringCasingExtension on String {
   String toCapitalize() =>
@@ -33,6 +34,32 @@ extension ExtendedText on Widget {
       alignment: AlignmentDirectional.centerEnd,
       child: this,
     );
+  }
+}
+
+extension DateTimeExtension on DateTime {
+  String get humanizeDate {
+    return "$day/$month/$year ";
+  }
+
+  String dateTime12Hours() {
+    final formatter = DateFormat('dd/MM/yyyy hh:mm aa');
+    return formatter.format(this);
+  }
+
+  String dateTime24Hours() {
+    final formatter = DateFormat('dd/MM/yyyy HH:mm');
+    return formatter.format(this);
+  }
+
+  String time12Hours() {
+    final formatter = DateFormat('hh:mm aa');
+    return formatter.format(this);
+  }
+
+  String time24Hours() {
+    final formatter = DateFormat('HH:mm');
+    return formatter.format(this);
   }
 }
 

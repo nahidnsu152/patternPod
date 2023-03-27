@@ -32,6 +32,7 @@ dependencies:
   hive_flutter: ^1.1.0
   hooks_riverpod: ^2.0.2
   iconly: ^1.0.1
+  intl: ^0.18.0
   readmore: ^2.2.0
   rive: ^0.10.1
   timelines: ^0.1.0
