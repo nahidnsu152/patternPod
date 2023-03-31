@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../utils/utils.dart';
 import '../theme/theme.dart';
 
-
 final scaffoldKeyProvider = Provider<GlobalKey<ScaffoldMessengerState>>((ref) {
   final GlobalKey<ScaffoldMessengerState> snackbarKey =
       GlobalKey<ScaffoldMessengerState>();
