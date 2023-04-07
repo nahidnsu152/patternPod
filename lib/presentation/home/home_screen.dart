@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../utils/alogrithms/search/binary_search.dart';
+import '../../utils/alogrithms/search/linear_search.dart';
 import '../../utils/utils.dart';
 import '../../widgets/k_app_bar.dart';
 import '../../widgets/widgets.dart';
@@ -15,6 +17,11 @@ class HomeScreen extends HookConsumerWidget {
     final time = DateTime.now();
     final myExampleList = <String>['Sam', 'John', 'Maya'];
     final val = useState(0.0);
+    List<int> arr = [0, 1, 3, 4, 5, 8, 9, 22];
+    int userValue = 3;
+    int min = 0;
+    int max = arr.length - 1;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const KAppBar(
@@ -82,6 +89,9 @@ class HomeScreen extends HookConsumerWidget {
               // }, confirm: () {
               //   return null;
               // });
+              binarySearch(arr, userValue, min, max);
+              int result = linearSearch(arr, userValue);
+              print(result);
             },
             text: "Press ME",
           )
