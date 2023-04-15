@@ -23,6 +23,35 @@ extension StringCasingExtension on String {
       .join(' ');
 }
 
+extension DoubleExtension on double {
+  String removeTrailingZeros() {
+    String stringValue = toString();
+
+    // Remove decimal point and trailing zeros if there are only zeros after decimal.
+    if (stringValue.contains('.') && RegExp(r'\.0+$').hasMatch(stringValue)) {
+      stringValue = stringValue.replaceAll(RegExp(r'\.0+$'), '');
+    }
+
+    // Remove trailing zeros after the decimal point.
+    if (stringValue.contains('.')) {
+      stringValue = stringValue.replaceAll(RegExp(r'0+$'), '');
+
+      // Remove the decimal point if there are no digits after it.
+      if (stringValue.endsWith('.')) {
+        stringValue = stringValue.substring(0, stringValue.length - 1);
+      }
+    }
+
+    // Limit the number of decimal places to 2 if the number has some non-zero digits after the decimal.
+    if (stringValue.contains('.') && !RegExp(r'\.0+$').hasMatch(stringValue)) {
+      double parsedValue = double.parse(stringValue);
+      stringValue = parsedValue.toStringAsFixed(2);
+    }
+
+    return stringValue;
+  }
+}
+
 extension ExtendedFlex on Flex {
   int get childCount => children.length;
 }
