@@ -140,7 +140,17 @@ class HomeScreen extends HookConsumerWidget {
                   "${QueryparameterScreen.route}?id=${10}&name=${'Nahid'}");
             },
             text: "Query Parameter Screen",
-          )
+          ),
+          KElevatedButton(
+            onPressed: () {
+              context.goNamed(
+                'allRoutingExample',
+                pathParameters: {'id': "10"},
+                queryParameters: {'name': 'Nahid', 'age': '25'},
+              );
+            },
+            text: "Push Named Screen",
+          ),
         ],
       ),
     );

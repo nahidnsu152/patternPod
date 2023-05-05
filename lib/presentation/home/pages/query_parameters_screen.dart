@@ -8,9 +8,12 @@ class QueryparameterScreen extends HookConsumerWidget {
   const QueryparameterScreen({super.key, required this.id, required this.name});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Queryparameter Screen'),
+      ),
       body: Center(
-        child: Text('QueryparameterScreen: '),
+        child: Text('QueryparameterScreen: $id, $name'),
       ),
     );
   }

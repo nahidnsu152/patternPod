@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../presentation/home/pages/all_example.dart';
 import '../presentation/home/pages/query_parameters_screen.dart';
 import '../presentation/main_nav/main_nav.dart';
 import '../presentation/main_nav/main_nav_with_rive.dart';
@@ -92,8 +93,20 @@ class RouterNotifier extends ChangeNotifier {
           path: QueryparameterScreen.route,
           builder: (context, state) => QueryparameterScreen(
             id: int.parse(state.queryParameters['id']!),
-            name: state.queryParameters['name']!,
+            name: state.queryParameters['name'] ?? 'No name',
           ),
+        ),
+        GoRoute(
+          name: 'allRoutingExample',
+          // path: 'allRoutingExample/:${int.tryParse('id') ?? 0})}',
+          path: '${AllRoutingExample.route}/:id',
+          builder: (BuildContext context, GoRouterState state) {
+            return AllRoutingExample(
+              id: int.tryParse(state.pathParameters['id']!) ?? int.parse("0"),
+              name: state.queryParameters['name'] ?? 'No name',
+              age: state.queryParameters['age'] ?? '10',
+            );
+          },
         ),
         // GoRoute(
         //   path: ApplicationInfoScreen.route,
