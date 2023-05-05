@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../presentation/home/pages/query_parameters_screen.dart';
 import '../presentation/main_nav/main_nav.dart';
 import '../presentation/main_nav/main_nav_with_rive.dart';
 import '../presentation/onborad/onboard_screen.dart';
@@ -86,6 +87,13 @@ class RouterNotifier extends ChangeNotifier {
           path: MainNavwithRive.route,
           builder: (context, state) => const MainNavwithRive(),
         ),
+        // GoRoute(
+        //   name: QueryparameterScreen.route,
+        //   path: QueryparameterScreen.route,
+        //   builder: (context, state) => QueryparameterScreen(
+        //     id:  state.q,
+        //   ),
+        // ),
         // GoRoute(
         //   path: ApplicationInfoScreen.route,
         //   pageBuilder: (context, state) => CustomTransitionPage<void>(
