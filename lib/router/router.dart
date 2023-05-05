@@ -87,13 +87,14 @@ class RouterNotifier extends ChangeNotifier {
           path: MainNavwithRive.route,
           builder: (context, state) => const MainNavwithRive(),
         ),
-        // GoRoute(
-        //   name: QueryparameterScreen.route,
-        //   path: QueryparameterScreen.route,
-        //   builder: (context, state) => QueryparameterScreen(
-        //     id:  state.q,
-        //   ),
-        // ),
+        GoRoute(
+          name: QueryparameterScreen.route,
+          path: QueryparameterScreen.route,
+          builder: (context, state) => QueryparameterScreen(
+            id: int.parse(state.queryParameters['id']!),
+            name: state.queryParameters['name']!,
+          ),
+        ),
         // GoRoute(
         //   path: ApplicationInfoScreen.route,
         //   pageBuilder: (context, state) => CustomTransitionPage<void>(

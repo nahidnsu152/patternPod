@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:patternpod/utils/alogrithms/sort/heap_sort.dart';
 
@@ -15,6 +16,7 @@ import '../../utils/utils.dart';
 import '../../widgets/k_app_bar.dart';
 import '../../widgets/widgets.dart';
 import '../drawer/side_menu.dart';
+import 'pages/query_parameters_screen.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
@@ -131,6 +133,13 @@ class HomeScreen extends HookConsumerWidget {
               // });
             },
             text: "Press ME",
+          ),
+          KElevatedButton(
+            onPressed: () {
+              context.push(
+                  "${QueryparameterScreen.route}?id=${10}&name=${'Nahid'}");
+            },
+            text: "Query Parameter Screen",
           )
         ],
       ),
