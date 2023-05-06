@@ -218,7 +218,7 @@ MainAxisSize mainMin = MainAxisSize.min;
 
 CrossAxisAlignment crossStart = CrossAxisAlignment.start;
 CrossAxisAlignment crossCenter = CrossAxisAlignment.center;
-CrossAxisAlignment crossend = CrossAxisAlignment.end;
+CrossAxisAlignment crossEnd = CrossAxisAlignment.end;
 CrossAxisAlignment crossStretch = CrossAxisAlignment.stretch;
 
 final kDivider = Divider(

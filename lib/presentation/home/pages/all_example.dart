@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:patternpod/utils/size_constant.dart';
+
+import '../../../utils/utils.dart';
 
 class AllRoutingExample extends HookConsumerWidget {
   static const route = '/allRoutingExample';
