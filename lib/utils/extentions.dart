@@ -1,5 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+String generateRandomString(int len) {
+  var r = Random();
+  const chars =
+      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  return List.generate(len, (index) => chars[r.nextInt(chars.length)]).join();
+}
 
 extension GlobalKeyExtension on GlobalKey {
   Rect get globalPaintBounds {
@@ -23,26 +32,42 @@ extension StringCasingExtension on String {
       .join(' ');
 }
 
+extension RandomOfDigits on Random {
+  /// Generates a non-negative random integer with a specified number of digits.
+  /// Supports [digitCount] values between 1 and 9 inclusive.
+  ///
+  num generateNumbers(int digitCount) {
+    assert(1 <= digitCount && digitCount <= 9);
+    int min = digitCount == 1 ? 0 : pow(10, digitCount - 1) as int;
+    int max = pow(10, digitCount) as int;
+    return min + nextInt(max - min);
+  }
+
+  // Usage:
+  //  final random = Random();
+  //  random.generateNumbers(6); // Generates a 6 digit number.
+}
+
 extension DoubleExtension on double {
   String removeTrailingZeros() {
     String stringValue = toString();
 
-    // Remove decimal point and trailing zeros if there are only zeros after decimal.
+    //* Remove decimal point and trailing zeros if there are only zeros after decimal.
     if (stringValue.contains('.') && RegExp(r'\.0+$').hasMatch(stringValue)) {
       stringValue = stringValue.replaceAll(RegExp(r'\.0+$'), '');
     }
 
-    // Remove trailing zeros after the decimal point.
+    //* Remove trailing zeros after the decimal point.
     if (stringValue.contains('.')) {
       stringValue = stringValue.replaceAll(RegExp(r'0+$'), '');
 
-      // Remove the decimal point if there are no digits after it.
+      //* Remove the decimal point if there are no digits after it.
       if (stringValue.endsWith('.')) {
         stringValue = stringValue.substring(0, stringValue.length - 1);
       }
     }
 
-    // Limit the number of decimal places to 2 if the number has some non-zero digits after the decimal.
+    //* Limit the number of decimal places to 2 if the number has some non-zero digits after the decimal.
     if (stringValue.contains('.') && !RegExp(r'\.0+$').hasMatch(stringValue)) {
       double parsedValue = double.parse(stringValue);
       stringValue = parsedValue.toStringAsFixed(2);
@@ -84,6 +109,11 @@ extension DateTimeExtension on DateTime {
     return "$day/$month/$year ";
   }
 
+  String yearMonthdate() {
+    final formatter = DateFormat('yyyy-MM-dd');
+    return formatter.format(this);
+  }
+
   String dateTime12Hours() {
     final formatter = DateFormat('dd/MM/yyyy hh:mm aa');
     return formatter.format(this);
@@ -102,6 +132,10 @@ extension DateTimeExtension on DateTime {
   String time24Hours() {
     final formatter = DateFormat('HH:mm');
     return formatter.format(this);
+  }
+
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
   }
 }
 
