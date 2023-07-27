@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'application/global.dart';
 import 'application/local_storage/storage_handler.dart';
+import 'application/theme/theme_provider.dart';
 import 'router/router.dart';
 import 'theme/theme.dart';
 import 'server/api_routes.dart';
