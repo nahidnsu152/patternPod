@@ -92,8 +92,8 @@ class RouterNotifier extends ChangeNotifier {
           name: QueryparameterScreen.route,
           path: QueryparameterScreen.route,
           builder: (context, state) => QueryparameterScreen(
-            id: int.parse(state.queryParameters['id']!),
-            name: state.queryParameters['name'] ?? 'No name',
+            id: int.parse(state.uri.queryParameters['id']!),
+            name: state.uri.queryParameters['name'] ?? 'No name',
           ),
         ),
         GoRoute(
@@ -103,8 +103,8 @@ class RouterNotifier extends ChangeNotifier {
           builder: (BuildContext context, GoRouterState state) {
             return AllRoutingExample(
               id: int.tryParse(state.pathParameters['id']!) ?? int.parse("0"),
-              name: state.queryParameters['name'] ?? 'No name',
-              age: state.queryParameters['age'] ?? '10',
+              name: state.uri.queryParameters['name'] ?? 'No name',
+              age: state.uri.queryParameters['age'] ?? '10',
             );
           },
         ),
