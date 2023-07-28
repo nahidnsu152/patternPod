@@ -88,14 +88,14 @@ class RouterNotifier extends ChangeNotifier {
           path: MainNavwithRive.route,
           builder: (context, state) => const MainNavwithRive(),
         ),
-        GoRoute(
-          name: QueryparameterScreen.route,
-          path: QueryparameterScreen.route,
-          builder: (context, state) => QueryparameterScreen(
-            id: int.parse(state.uri.queryParameters['id']!),
-            name: state.uri.queryParameters['name'] ?? 'No name',
-          ),
-        ),
+        // GoRoute(
+        //   name: QueryparameterScreen.route,
+        //   path: QueryparameterScreen.route,
+        //   builder: (context, state) => QueryparameterScreen(
+        //     id: int.parse(state.uri.queryParameters['id']!),
+        //     name: state.uri.queryParameters['name'] ?? 'No name',
+        //   ),
+        // ),
         GoRoute(
           name: 'allRoutingExample',
           // path: 'allRoutingExample/:${int.tryParse('id') ?? 0})}',
@@ -108,28 +108,31 @@ class RouterNotifier extends ChangeNotifier {
             );
           },
         ),
-        // GoRoute(
-        //   path: ApplicationInfoScreen.route,
-        //   pageBuilder: (context, state) => CustomTransitionPage<void>(
-        //     key: state.pageKey,
-        //     child: const ApplicationInfoScreen(),
-        //     transitionsBuilder: (BuildContext context,
-        //             Animation<double> animation,
-        //             Animation<double> secondaryAnimation,
-        //             Widget child) =>
-        //         SlideTransition(
-        //       position: animation.drive(
-        //         Tween(
-        //           begin: const Offset(1, 0),
-        //           end: Offset.zero,
-        //         ).chain(
-        //           CurveTween(curve: Curves.easeIn),
-        //         ),
-        //       ),
-        //       child: child,
-        //     ),
-        //   ),
-        // ),
+        GoRoute(
+          path: QueryparameterScreen.route,
+          pageBuilder: (context, state) => CustomTransitionPage<void>(
+            key: state.pageKey,
+            child: QueryparameterScreen(
+              id: int.parse(state.uri.queryParameters['id']!),
+              name: state.uri.queryParameters['name'] ?? 'No name',
+            ),
+            transitionsBuilder: (BuildContext context,
+                    Animation<double> animation,
+                    Animation<double> secondaryAnimation,
+                    Widget child) =>
+                SlideTransition(
+              position: animation.drive(
+                Tween(
+                  begin: const Offset(1, 0),
+                  end: Offset.zero,
+                ).chain(
+                  CurveTween(curve: Curves.easeInOutCubicEmphasized),
+                ),
+              ),
+              child: child,
+            ),
+          ),
+        ),
       ];
   Page<void> _errorPageBuilder(BuildContext context, GoRouterState state) =>
       MaterialPage(

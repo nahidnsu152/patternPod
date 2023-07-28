@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -108,6 +106,6 @@ class ProviderLog extends ProviderObserver {
   "PROVIDER": "${provider.name}; ${provider.runtimeType.toString()}"
   
 }''');
-    log("$newValue");
+    //log("$newValue");
   }
 }

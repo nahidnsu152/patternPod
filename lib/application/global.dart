@@ -64,6 +64,19 @@ showToast(String text) => BotToast.showText(
       duration: const Duration(seconds: 2),
       contentPadding: const EdgeInsets.all(10),
     );
+showErrorToast(String text) => BotToast.showText(
+      text: text,
+      textStyle: const TextStyle(fontSize: 14, color: Colors.white),
+      duration: const Duration(seconds: 3),
+      contentPadding: const EdgeInsets.all(10),
+      //contentColor: ColorPalate.error,
+      borderRadius: radius12,
+      wrapToastAnimation: (controller, cancel, Widget child) =>
+          CustomAnimationWidget(
+        controller: controller,
+        child: child,
+      ),
+    );
 
 showFloatBottomSheet(
   BuildContext context, {
@@ -186,6 +199,79 @@ class CustomOffsetAnimation extends HookConsumerWidget {
                 opacity: animation.value,
                 child: child,
               ),
+            ),
+          ),
+        );
+      },
+      child: child,
+    );
+  }
+}
+
+class CustomAnimationWidget extends HookConsumerWidget {
+  final AnimationController controller;
+  final Widget child;
+
+  const CustomAnimationWidget({
+    Key? key,
+    required this.controller,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final Tween<Offset> tweenOffset = Tween<Offset>(
+      begin: const Offset(0, 40),
+      end: const Offset(0, 0),
+    );
+
+    final Tween<double> tweenScale = Tween<double>(begin: 0.7, end: 1.0);
+    Animation<double> animation =
+        CurvedAnimation(parent: controller, curve: Curves.decelerate);
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: tweenOffset.evaluate(animation),
+          child: Transform.scale(
+            scale: tweenScale.evaluate(animation),
+            child: Opacity(
+              opacity: animation.value,
+              child: child,
+            ),
+          ),
+        );
+      },
+      child: child,
+    );
+  }
+}
+
+class CustomAttachedAnimation extends HookConsumerWidget {
+  final AnimationController controller;
+  final Widget child;
+
+  const CustomAttachedAnimation({
+    Key? key,
+    required this.controller,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ref) {
+    Animation<double> animation =
+        CurvedAnimation(parent: controller, curve: Curves.decelerate);
+
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        return ClipRect(
+          child: Align(
+            heightFactor: animation.value,
+            widthFactor: animation.value,
+            child: Opacity(
+              opacity: animation.value,
+              child: child,
             ),
           ),
         );

@@ -1,91 +1,116 @@
-// import 'package:flutter_easylogger/flutter_logger.dart';
-// import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// import '../global.dart';
-// import 'auth_state.dart';
-// import 'loggedin_provider.dart';
+import '../../domain/auth/login_body.dart';
 
-// final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-//   return AuthNotifier(AuthRepo(), ref);
-// });
+import '../../infrastructure/auth_repository.dart';
 
-// class AuthNotifier extends StateNotifier<AuthState> {
-//   final AuthRepo authRepo;
-//   final Ref _ref;
+import '../global.dart';
+import 'auth_state.dart';
 
-//   AuthNotifier(this.authRepo, this._ref) : super(AuthState.init());
+final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
+  return AuthNotifier(AuthRepo(), ref);
+}, name: 'authProvider');
 
-//   Future<void> signUp(SignupBody body) async {
-//     state = state.copyWith(loading: true);
+class AuthNotifier extends StateNotifier<AuthState> {
+  final AuthRepo repo;
+  final Ref ref;
 
-//     final res = await authRepo.signUp(body);
+  AuthNotifier(this.repo, this.ref) : super(AuthState.init());
 
-//     _ref.read(snackBarProvider(res.match((l) {
-//       return l.error;
-//     }, (r) => r.message)));
+  // void setUser(UserModel user) {
+  //   state = state.copyWith(user: user);
+  // }
 
-//     state = res.fold(
-//       (l) {
-//         return state.copyWith(failure: l, loading: false);
-//       },
-//       (r) {
-//         _ref.read(loggedInProvider.notifier).saveCache(r.token, r.user);
-//         _ref.read(loggedInProvider.notifier).isLoggedIn();
-//         return state.copyWith(user: r.user, loading: false);
-//       },
-//     );
-//   }
+  // void signUp(SignUpBody body) async {
+  //   state = state.copyWith(loading: true);
 
-//   Future<void> login(LoginBody body) async {
-//     state = state.copyWith(loading: true);
+  //   final res = await repo.signUp(body);
 
-//     Logger.v('body: $body');
-//     final res = await authRepo.login(body);
+  //   state = res.fold(
+  //     (l) {
+  //       showErrorToast(l.error.message);
+  //       return state.copyWith(failure: l, loading: false);
+  //     },
+  //     (r) {
+  //       showToast(r.message);
+  //       ref
+  //           .read(loggedInProvider.notifier)
+  //           .updateAuthCache(token: r.data.token, user: r.data);
+  //       return state.copyWith(user: r.data, loading: false);
+  //     },
+  //   );
+  // }
 
-//     _ref.read(
-//       snackBarProvider(
-//         res.fold((l) {
-//           return l.error;
-//         }, (r) => r.message),
-//       ),
-//     );
+  void login(LoginBody body) async {
+    state = state.copyWith(loading: true);
 
-//     state = res.fold(
-//       (l) {
-//         return state.copyWith(failure: l, loading: false);
-//       },
-//       (r) {
-//         _ref.read(loggedInProvider.notifier).saveCache(r.token, r.user);
-//         _ref.read(loggedInProvider.notifier).isLoggedIn();
-//         return state.copyWith(user: r.user, loading: false, token: r.token);
-//       },
-//     );
-//   }
+    final result = await repo.login(body);
 
-//   void logout() {
-//     _ref.read(loggedInProvider.notifier).deleteCache();
-//     _ref.read(snackBarProvider('${state.user.name} logging out'));
-//     state = state.copyWith(user: UserModel.init(), token: '');
-//   }
+    state = result.fold(
+      (l) {
+        showErrorToast(l.error.message);
+        return state = state.copyWith(failure: l, loading: false);
+      },
+      (r) {
+        showToast(r.message);
+        // ref
+        //     .read(loggedInProvider.notifier)
+        //     .updateAuthCache(token: r.data.token, user: r.data);
+        return state = state.copyWith(user: r.data, loading: false);
+      },
+    );
+  }
 
-//   void changePassword(PasswordChangeBody body) async {
-//     state = state.copyWith(loading: true);
+  // void logout() {
+  //   state = state.copyWith(user: UserModel.init());
 
-//     Logger.v('body: $body');
-//     final res = await authRepo.changePassword(body);
+  //   ref.read(loggedInProvider.notifier).deleteAuthCache();
 
-//     _ref.read(
-//       snackBarProvider(
-//         res.fold((l) {
-//           return l.error;
-//         }, (r) => r.message),
-//       ),
-//     );
+  //   // _ref.read(loggedInProvider.notifier).isLoggedIn();
 
-//     state = res.fold(
-//       (l) => state.copyWith(failure: l, loading: false),
-//       (r) => state.copyWith(loading: false),
-//     );
-//   }
-// }
+  //   showToast('${state.user.name} logging out');
+  // }
 
+  // void profileView() async {
+  //   state = state.copyWith(loading: true);
+  //   final result = await repo.profileView();
+
+  //   state = result.fold(
+  //     (l) {
+  //       BotToast.showText(
+  //           text: l.error.message, contentColor: ColorPalate.error);
+  //       return state = state.copyWith(failure: l, loading: false);
+  //     },
+  //     (r) {
+  //       return state.copyWith(user: r.data, loading: false);
+  //     },
+  //   );
+  // }
+
+  // void profileUpdate(ProfileUpdateBody user, File? image) async {
+  //   state = state.copyWith(loading: true);
+  //   String? imageUrl;
+  //   if (image != null) {
+  //     imageUrl = await uploadImage(image);
+  //   }
+  //   user = user.copyWith(profilePicture: imageUrl ?? user.profilePicture);
+  //   Logger.v('user: $user');
+  //   final result = await repo.profileUpdate(user);
+
+  //   state = result.fold(
+  //     (l) {
+  //       BotToast.showText(
+  //           text: l.error.message, contentColor: ColorPalate.error);
+  //       return state = state.copyWith(failure: l, loading: false);
+  //     },
+  //     (r) {
+  //       ref.read(routerProvider).pop();
+  //       return state.copyWith(user: r.data, loading: false);
+  //     },
+  //   );
+  // }
+
+  // Future<String> uploadImage(File file) {
+  //   return repo.imageUpload(file);
+  // }
+}

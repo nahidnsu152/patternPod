@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,59 +6,68 @@ import 'package:flutter_easylogger/flutter_logger.dart';
 
 class CleanFailure extends Equatable {
   final String tag;
-  final String error;
-  final bool _enableDialogue;
+  final CleanError error;
+  final bool enableDialogue;
   final int statusCode;
 
   const CleanFailure({
     required this.tag,
     required this.error,
-    bool enableDialogue = true,
+    this.enableDialogue = true,
     this.statusCode = -1,
-  }) : _enableDialogue = enableDialogue;
+  });
 
-  CleanFailure copyWith({String? tag, String? error, int? statusCode}) {
+  CleanFailure copyWith({
+    String? tag,
+    CleanError? error,
+    int? statusCode,
+  }) {
     return CleanFailure(
-        tag: tag ?? this.tag,
-        error: error ?? this.error,
-        statusCode: statusCode ?? this.statusCode);
+      tag: tag ?? this.tag,
+      error: error ?? this.error,
+      statusCode: statusCode ?? this.statusCode,
+    );
   }
 
-  factory CleanFailure.withData({
-    required String tag,
-    required String url,
-    required String method,
-    required int statusCode,
-    required Map<String, String> header,
-    required Map<String, dynamic> body,
-    bool enableDialogue = true,
-    required dynamic error,
-  }) {
-    final String tagString = tag == 'Type' ? url : tag;
-    final Map<String, dynamic> errorMap = {
-      'url': url,
-      'method': method,
-      if (header.isNotEmpty) 'header': header,
-      if (body.isNotEmpty) 'body': body,
-      'error': error,
-      if (statusCode > 0) 'status_code': statusCode
-    };
-    final encoder = JsonEncoder.withIndent(' ' * 2);
-
-    final String errorStr = encoder.convert(errorMap);
+  factory CleanFailure.withData(
+      {required String tag,
+      required String url,
+      required String method,
+      required int statusCode,
+      required Map<String, String> header,
+      required Map<String, dynamic> body,
+      bool enableDialogue = true,
+      required CleanError error}) {
+    final String t = tag == 'Type' ? url : tag;
+    // final Map<String, dynamic> errorMap = {
+    //   'url': url,
+    //   'method': method,
+    //   if (header.isNotEmpty) 'header': header,
+    //   if (body.isNotEmpty) 'body': body,
+    //   'error': error,
+    //   if (statusCode > 0) 'status_code': statusCode
+    // };
+    // final encoder = JsonEncoder.withIndent(' ' * 2);
+    // // return encoder.convert(toJson());
+    // final String errorStr = encoder.convert(errorMap);
     return CleanFailure(
-        tag: tagString,
-        error: errorStr,
+        tag: t,
+        error: error,
         enableDialogue: enableDialogue,
         statusCode: statusCode);
   }
-  factory CleanFailure.none() => const CleanFailure(tag: '', error: '');
+
+  factory CleanFailure.none() {
+    return CleanFailure(tag: '', error: CleanError.none());
+  }
 
   @override
-  String toString() => 'CleanFailure(type: $tag, error: $error)';
+  String toString() {
+    return 'CleanFailure(tag: $tag, error: $error, statusCode: $statusCode)';
+  }
 
   showDialogue(BuildContext context) {
-    if (_enableDialogue) {
+    if (enableDialogue) {
       CleanFailureDialogue.show(context, failure: this);
     } else {
       Logger.e(this);
@@ -68,7 +75,61 @@ class CleanFailure extends Equatable {
   }
 
   @override
-  List<Object> get props => [tag, error];
+  List<Object> get props => [tag, error, enableDialogue, statusCode];
+
+  Map<String, dynamic> toMap() {
+    return {
+      'tag': tag,
+      'error': error.toMap(),
+      'enableDialogue': enableDialogue,
+      'statusCode': statusCode,
+    };
+  }
+
+  factory CleanFailure.fromMap(Map<String, dynamic> map) {
+    return CleanFailure(
+      tag: map['tag'] ?? '',
+      error: CleanError.fromMap(map['error']),
+      enableDialogue: map['enableDialogue'] ?? false,
+      statusCode: map['statusCode']?.toInt() ?? 0,
+    );
+  }
+}
+
+class CleanError extends Equatable {
+  final String message;
+
+  const CleanError({
+    required this.message,
+  });
+
+  factory CleanError.none() => const CleanError(message: '');
+
+  CleanError copyWith({
+    String? message,
+  }) {
+    return CleanError(
+      message: message ?? this.message,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'message': message,
+    };
+  }
+
+  factory CleanError.fromMap(Map<String, dynamic> map) {
+    return CleanError(
+      message: map['message'] ?? '',
+    );
+  }
+
+  @override
+  String toString() => 'CleanError(message: $message)';
+
+  @override
+  List<Object> get props => [message];
 }
 
 class CleanFailureDialogue extends StatelessWidget {
@@ -102,7 +163,7 @@ class CleanFailureDialogue extends StatelessWidget {
         ],
       ),
       content: Text(
-        failure.error,
+        failure.error.message,
         maxLines: 4,
       ),
       actions: [
@@ -201,7 +262,7 @@ class CleanFailureDetailsPage extends StatelessWidget {
                               visualDensity: VisualDensity.compact),
                           onPressed: () {
                             Clipboard.setData(
-                                ClipboardData(text: failure.error));
+                                ClipboardData(text: failure.error.message));
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Copied to Clipboard')));
@@ -229,7 +290,7 @@ class CleanFailureDetailsPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    failure.error,
+                    failure.error.message,
                     style: const TextStyle(color: Colors.red),
                   ),
                 ]),
