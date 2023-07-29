@@ -23,73 +23,11 @@ class KElevatedButton extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: paddingH20,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          // shape: MaterialStateProperty.all(
-          //   RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.circular(10.r),
-          //   ),
-          // ),
-          minimumSize: MaterialStateProperty.all(Size.fromHeight(48.h)),
-          backgroundColor: MaterialStateProperty.all(backgroundColor),
-          foregroundColor: MaterialStateProperty.all(foregroundColor),
-        ),
-        onPressed: onPressed,
-        child: (loading != null && loading!)
-            ? SizedBox(
-                height: 30.h,
-                width: 30.h,
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    foregroundColor ?? context.color.secondary,
-                  ),
-                ),
-              )
-            : Text(
-                text,
-                style: context.button.copyWith(
-                  color: foregroundColor ?? context.color.onPrimary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.sp,
-                ),
-              ),
-      ),
-    );
-  }
-}
-
-class KIconElevatedButton extends HookConsumerWidget {
-  const KIconElevatedButton({
-    Key? key,
-    required this.onPressed,
-    required this.text,
-    required this.icon,
-    this.backgroundColor,
-    this.foregroundColor,
-    this.loading = false,
-  }) : super(key: key);
-
-  final String text;
-  final Widget icon;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final VoidCallback onPressed;
-  final bool? loading;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
-      style: ButtonStyle(
-        // shape: MaterialStateProperty.all(
-        //   RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(10.r),
-        //   ),
-        // ),
-        minimumSize: MaterialStateProperty.all(Size.fromHeight(55.h)),
-        backgroundColor: MaterialStateProperty.all(backgroundColor),
-        foregroundColor: MaterialStateProperty.all(foregroundColor),
+      style: ElevatedButton.styleFrom(
+        foregroundColor: foregroundColor ?? context.color.shadow,
+        backgroundColor: backgroundColor ?? context.color.secondary,
+        minimumSize: Size.fromHeight(48.h),
       ),
       onPressed: onPressed,
       child: (loading != null && loading!)
@@ -98,23 +36,17 @@ class KIconElevatedButton extends HookConsumerWidget {
               width: 30.h,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  foregroundColor ?? Theme.of(context).colorScheme.secondary,
+                  foregroundColor ?? context.color.secondary,
                 ),
               ),
             )
-          : Row(
-              children: [
-                Expanded(child: Center(child: Text(text))),
-                Material(
-                  elevation: 4,
-                  color: backgroundColor ?? Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(100.r),
-                  child: Padding(
-                    padding: EdgeInsets.all(6.w),
-                    child: icon,
-                  ),
-                ),
-              ],
+          : Text(
+              text,
+              style: context.button.copyWith(
+                color: foregroundColor ?? context.color.primaryContainer,
+                fontWeight: FontWeight.w800,
+                fontSize: Dimensions.defaultTextSize,
+              ),
             ),
     );
   }
@@ -143,11 +75,6 @@ class KOutlinedButton extends HookConsumerWidget {
       onTap: () {},
       child: OutlinedButton(
         style: ButtonStyle(
-          // shape: MaterialStateProperty.all(
-          //   RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.circular(10.r),
-          //   ),
-          // ),
           minimumSize: MaterialStateProperty.all(Size.fromHeight(55.h)),
           backgroundColor: MaterialStateProperty.all(backgroundColor),
           foregroundColor: MaterialStateProperty.all(foregroundColor),
@@ -188,7 +115,7 @@ class KTextButton extends StatelessWidget {
   }) : super(key: key);
 
   final Widget child;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final BorderRadiusGeometry borderRadius;
   final EdgeInsetsGeometry? padding;
   final ButtonStyle? style;
@@ -196,15 +123,16 @@ class KTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        style: ButtonStyle(
-          padding: MaterialStateProperty.all(padding),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: borderRadius,
-            ),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(padding),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: borderRadius,
           ),
         ),
-        onPressed: () => onPressed,
-        child: child);
+      ),
+      onPressed: onPressed,
+      child: child,
+    );
   }
 }
