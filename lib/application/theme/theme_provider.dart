@@ -18,6 +18,7 @@ class ThemeController with ChangeNotifier {
   late final DatabaseService _database;
 
   String get theme => _database.savedTheme;
+  bool get isDarkMode => theme == 'dark' ? true : false;
 
   void toggle(bool mode) {
     (mode)
