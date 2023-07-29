@@ -82,7 +82,7 @@ class OnboardScreen extends HookConsumerWidget {
               ? SizedBox(
                   child: Text(
                     "",
-                    style: CustomStyle.customStyleInstance.onboardSkipStyle,
+                    style: CustomStyle.onboardSkipStyle,
                   ),
                 )
               : Row(
@@ -98,7 +98,7 @@ class OnboardScreen extends HookConsumerWidget {
                         child: Text(
                           KStrings.skip,
                           style:
-                              CustomStyle.customStyleInstance.onboardTitleStyle,
+                              CustomStyle.onboardTitleStyle,
                         ),
                       ),
                     ),

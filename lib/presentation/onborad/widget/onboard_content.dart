@@ -31,14 +31,14 @@ class OnboardContent extends HookConsumerWidget {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: CustomStyle.customStyleInstance.onboardTitleStyle,
+            style: CustomStyle.onboardTitleStyle,
           ),
         ),
         gap20,
         Text(
           description,
           textAlign: TextAlign.center,
-          style: CustomStyle.customStyleInstance.onboardDescriptionStyle,
+          style: CustomStyle.onboardDescriptionStyle,
         ),
       ],
     );
