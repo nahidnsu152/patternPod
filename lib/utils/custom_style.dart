@@ -13,6 +13,10 @@ class CustomStyle {
     fontSize: Dimensions.mediumTextSize,
     color: useContext().color.shadow,
   );
+  static final textFieldHintStyle = TextStyle(
+    fontSize: Dimensions.mediumTextSize,
+    color: useContext().color.shadow.withOpacity(0.5),
+  );
 
   //? Onboard Screen
   static final onboardSkipStyle = TextStyle(

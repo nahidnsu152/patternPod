@@ -36,7 +36,7 @@ class KElevatedButton extends HookConsumerWidget {
               width: 30.h,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  foregroundColor ?? context.color.secondary,
+                  foregroundColor ?? context.color.primary,
                 ),
               ),
             )

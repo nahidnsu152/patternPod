@@ -2,121 +2,13 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../utils/text_theme_style_x.dart';
 
-
-import '../utils/size_constant.dart';
+import '../utils/utils.dart';
 import 'k_inkwell.dart';
 
 class KTextFormField extends HookConsumerWidget {
   const KTextFormField({
-    Key? key,
-    required this.hintText,
-    required TextEditingController controller,
-    this.isObscure = false,
-    this.readOnly = false,
-    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
-    this.prefixIcon,
-    this.suffixIcon,
-    this.borderColor = Colors.transparent,
-    this.fillColor,
-    this.keyboardType = TextInputType.text,
-    this.validator,
-    this.focusNode,
-    this.onFieldSubmitted,
-    this.onChanged,
-    this.onEditingComplete,
-    this.onSaved,
-    this.onTap,
-    this.textInputAction,
-  })  : _controller = controller,
-        super(key: key);
-
-  final String hintText;
-  final TextEditingController _controller;
-  final bool isObscure, readOnly;
-  final FocusNode? focusNode;
-  final BorderRadius borderRadius;
-  final Widget? prefixIcon, suffixIcon;
-  final Color? fillColor;
-  final Color borderColor;
-  final TextInputType keyboardType;
-  final Function(String)? onFieldSubmitted;
-  final TextInputAction? textInputAction;
-  final Function(String?)? onSaved;
-  final Function(String)? onChanged;
-  final Function()? onEditingComplete, onTap;
-  final String? Function(String?)? validator;
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final hideText = useState(true);
-
-    final border = OutlineInputBorder(
-      borderRadius: borderRadius,
-      borderSide: BorderSide(color: borderColor),
-    );
-    return TextFormField(
-      controller: _controller,
-      keyboardType: keyboardType,
-      validator: validator,
-      readOnly: readOnly,
-      style: GoogleFonts.josefinSans(
-        fontWeight: FontWeight.w500,
-        // fontSize: 16.sp,
-      ),
-      obscureText: isObscure ? hideText.value : false,
-      focusNode: focusNode,
-      onFieldSubmitted: onFieldSubmitted,
-      onChanged: onChanged,
-      onEditingComplete: onEditingComplete,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      onSaved: onSaved,
-      onTap: onTap,
-      decoration: InputDecoration(
-        border: border,
-        focusedBorder: border,
-        enabledBorder: border,
-        errorBorder: border,
-        disabledBorder: border,
-        isDense: true,
-        filled: true,
-        fillColor: fillColor,
-        // contentPadding: EdgeInsets.symmetric(
-        //   horizontal: 12.w,
-        //   vertical: 12.h,
-        // ),
-        hintText: hintText,
-        prefixIcon: prefixIcon,
-        // suffix: suffixIcon,
-        suffixIcon: suffixIcon ??
-            (isObscure
-                ? KInkWell(
-                    borderRadius: radius12,
-                    onTap: () {
-                      hideText.value = !hideText.value;
-                    },
-                    child: hideText.value
-                        ? Icon(
-                            Icons.remove_red_eye,
-                            size: 20.sp,
-                            color: Theme.of(context).primaryColorLight,
-                          )
-                        : Icon(
-                            Icons.remove_red_eye_outlined,
-                            size: 20.sp,
-                          ),
-                  )
-                : null),
-      ),
-    );
-  }
-}
-
-class KTextFormField2 extends HookConsumerWidget {
-  const KTextFormField2({
     Key? key,
     this.controller,
     required this.hintText,
@@ -126,6 +18,8 @@ class KTextFormField2 extends HookConsumerWidget {
     this.isLabel = false,
     this.onTap,
     this.prefix,
+    this.suffix,
+    this.suffixIcon,
     this.validator,
     this.focusNode,
     this.isObscure = false,
@@ -134,6 +28,7 @@ class KTextFormField2 extends HookConsumerWidget {
     this.textInputAction,
     this.maxLines = 1,
     this.contentPadding = const EdgeInsets.symmetric(horizontal: 12),
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -142,7 +37,7 @@ class KTextFormField2 extends HookConsumerWidget {
   final Widget? icon;
   final bool readOnly, isLabel;
   final VoidCallback? onTap;
-  final Widget? prefix;
+  final Widget? prefix, suffix, suffixIcon;
   final String? Function(String?)? validator;
   final bool isObscure;
   final FocusNode? focusNode;
@@ -151,15 +46,16 @@ class KTextFormField2 extends HookConsumerWidget {
   final Function(String)? onChanged;
   final int? maxLines;
   final EdgeInsetsGeometry contentPadding;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hideText = useState(true);
     final border = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8.r),
+      borderRadius: radius10,
       borderSide: BorderSide(
-        color: context.color.onBackground.withOpacity(.1),
-        width: 2,
+        color: context.color.secondaryContainer.withOpacity(0.5),
+        width: 2.w,
       ),
     );
     return TextFormField(
@@ -167,22 +63,31 @@ class KTextFormField2 extends HookConsumerWidget {
       controller: controller,
       readOnly: readOnly,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      style: GoogleFonts.josefinSans(
-        fontWeight: FontWeight.w500,
-        // fontSize: 16.sp,
-      ),
+      style: CustomStyle.textFieldStyle,
+      cursorColor: context.color.secondaryContainer,
+      cursorWidth: 2.w,
       textAlign: textAlign,
       keyboardType: keyboardType,
       maxLines: maxLines,
+      focusNode: focusNode,
       decoration: InputDecoration(
         hintText: isLabel ? null : hintText,
+        hintStyle: CustomStyle.textFieldHintStyle,
         labelText: isLabel ? hintText : null,
         contentPadding: contentPadding,
-        // fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(.1),
         border: border,
         enabledBorder: border,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: radius10,
+          borderSide: BorderSide(
+            color: context.color.secondaryContainer,
+            width: 2.w,
+          ),
+        ),
         filled: true,
+        fillColor: Colors.white.withOpacity(0.8),
         prefix: prefix,
+        suffix: suffix,
         suffixIcon: isObscure
             ? KInkWell(
                 borderRadius: radius24,
@@ -193,10 +98,12 @@ class KTextFormField2 extends HookConsumerWidget {
                     ? const Icon(EvaIcons.eyeOff2Outline)
                     : const Icon(EvaIcons.eye),
               )
-            : null,
+            : suffixIcon,
       ),
       onTap: onTap,
       validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
+      onChanged: onChanged,
     );
   }
 }
