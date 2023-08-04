@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:patternpod/utils/alogrithms/sort/heap_sort.dart';
+import 'package:patternpod/widgets/k_text_form_field.dart';
 
 import '../../utils/alogrithms/search/binary_search.dart';
 import '../../utils/alogrithms/search/linear_search.dart';
@@ -134,6 +135,10 @@ class HomeScreen extends HookConsumerWidget {
             },
             text: "Press ME",
           ),
+          const KTextFormField(
+            hintText: "hintText",
+          ),
+
           KElevatedButton(
             onPressed: () {
               context.push(

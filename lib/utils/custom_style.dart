@@ -6,35 +6,39 @@ import 'text_theme_style_x.dart';
 
 class CustomStyle {
   CustomStyle._();
-  static final CustomStyle _customStyle = CustomStyle._();
-  static get customStyleInstance => _customStyle;
+  // static final CustomStyle _customStyle = CustomStyle._();
+  // static get customStyleInstance => _customStyle;
 
-  final textFieldStyle = TextStyle(
+  static final textFieldStyle = TextStyle(
     fontSize: Dimensions.mediumTextSize,
     color: useContext().color.shadow,
   );
+  static final textFieldHintStyle = TextStyle(
+    fontSize: Dimensions.mediumTextSize,
+    color: useContext().color.shadow.withOpacity(0.5),
+  );
 
   //? Onboard Screen
-  final onboardSkipStyle = TextStyle(
+  static final onboardSkipStyle = TextStyle(
     fontSize: Dimensions.defaultTextSize,
     fontWeight: FontWeight.w600,
     color: useContext().color.shadow,
   );
 
-  final onboardTitleStyle = TextStyle(
+  static final onboardTitleStyle = TextStyle(
     fontSize: Dimensions.mediumTextSize,
     fontWeight: FontWeight.bold,
     color: useContext().color.shadow,
   );
 
-  final onboardDescriptionStyle = TextStyle(
+  static final onboardDescriptionStyle = TextStyle(
     fontSize: Dimensions.defaultTextSize,
     fontWeight: FontWeight.w600,
     color: useContext().color.shadow.withOpacity(0.8),
   );
 
   //? Settings Screen
-  final settingsTitleStyle = TextStyle(
+  static final settingsTitleStyle = TextStyle(
     fontSize: 18.sp,
     color: useContext().color.onPrimaryContainer,
   );

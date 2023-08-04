@@ -27,7 +27,7 @@ class SettingsScreen extends HookConsumerWidget {
               color: CustomColor.grey3,
               title: Text(
                 KStrings.theme,
-                style: CustomStyle.customStyleInstance.settingsTitleStyle,
+                style: CustomStyle.settingsTitleStyle,
               ),
               trailing: Switch(
                 value: isDarkMode.value,

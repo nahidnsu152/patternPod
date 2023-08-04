@@ -6,6 +6,9 @@ class KStrings {
   static const String cacheBox = 'cache-box';
   static const String user = 'user';
 
+  //? Widgets
+  static const String pleaseSelectOne = 'Please select one';
+
   //? Onboard Screen
   static const String skip = 'Skip';
   static const String next = 'Next';
