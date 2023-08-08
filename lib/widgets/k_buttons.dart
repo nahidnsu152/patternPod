@@ -12,42 +12,30 @@ class KElevatedButton extends HookConsumerWidget {
     required this.text,
     this.backgroundColor,
     this.foregroundColor,
-    this.loading,
   }) : super(key: key);
 
   final String text;
   final Color? backgroundColor;
   final Color? foregroundColor;
   final VoidCallback? onPressed;
-  final bool? loading;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: foregroundColor ?? context.color.shadow,
-        backgroundColor: backgroundColor ?? context.color.secondary,
-        minimumSize: Size.fromHeight(48.h),
+        backgroundColor: backgroundColor ?? context.color.primary,
+        minimumSize: Size.fromHeight(46.h),
       ),
       onPressed: onPressed,
-      child: (loading != null && loading!)
-          ? SizedBox(
-              height: 30.h,
-              width: 30.h,
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  foregroundColor ?? context.color.primary,
-                ),
-              ),
-            )
-          : Text(
-              text,
-              style: context.button.copyWith(
-                color: foregroundColor ?? context.color.primaryContainer,
-                fontWeight: FontWeight.w800,
-                fontSize: Dimensions.defaultTextSize,
-              ),
-            ),
+      child: Text(
+        text,
+        style: context.button.copyWith(
+          color: foregroundColor ?? context.color.shadow,
+          fontWeight: FontWeight.w800,
+          fontSize: Dimensions.mediumTextSize,
+        ),
+      ),
     );
   }
 }
@@ -59,7 +47,6 @@ class KOutlinedButton extends HookConsumerWidget {
     required this.text,
     this.backgroundColor,
     this.foregroundColor,
-    this.loading,
   }) : super(key: key);
 
   final String text;
@@ -67,7 +54,6 @@ class KOutlinedButton extends HookConsumerWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final VoidCallback onPressed;
-  final ValueNotifier<bool>? loading;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,25 +66,14 @@ class KOutlinedButton extends HookConsumerWidget {
           foregroundColor: MaterialStateProperty.all(foregroundColor),
         ),
         onPressed: onPressed,
-        child: (loading != null && loading!.value)
-            ? SizedBox(
-                height: 30.h,
-                width: 30.h,
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    foregroundColor ?? Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
-              )
-            : Text(
-                text,
-                style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      color: foregroundColor ??
-                          Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.sp,
-                    ),
+        child: Text(
+          text,
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                color: foregroundColor ?? Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
               ),
+        ),
       ),
     );
   }
