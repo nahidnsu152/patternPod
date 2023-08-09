@@ -1,179 +1,119 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:iconly/iconly.dart';
 
 import '../server/api_routes.dart';
-import '../utils/utils.dart';
 
 class KCachedNetworkImageNoBase extends StatelessWidget {
-  const KCachedNetworkImageNoBase({
+  const KCachedNetworkImageNoBase(
+      {Key? key,
+      required this.imageUrl,
+      this.borderRadius = const BorderRadius.all(Radius.zero),
+      this.height = 200,
+      this.width = double.infinity,
+      this.borderWidth,
+      this.fit = BoxFit.cover,
+      this.child,
+      this.padding,
+      this.margin,
+      this.borderColor})
+      : super(key: key);
+
+  final String imageUrl;
+  final BorderRadius borderRadius;
+  final BoxFit? fit;
+  final double? height, width, borderWidth;
+  final Widget? child;
+  final EdgeInsetsGeometry? padding, margin;
+  final Color? borderColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
+      fit: fit,
+      imageBuilder: (context, imageProvider) {
+        return Container(
+          width: width ?? double.infinity,
+          height: height ?? double.infinity,
+          padding: padding,
+          margin: margin,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            border: Border.all(
+              color: borderColor ?? Colors.transparent,
+              width: borderWidth ?? 1.w,
+            ),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: child,
+        );
+      },
+      height: height,
+      width: width,
+      progressIndicatorBuilder: (context, url, progress) => Center(
+        child: SizedBox(
+          height: 30.h,
+          width: 30.h,
+          child: CircularProgressIndicator(
+            value: progress.progress,
+            strokeWidth: .8.w,
+          ),
+        ),
+      ),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+      // placeholder: (context, url) => const Icon(Icons.error),
+    );
+  }
+}
+
+class KCachedNetworkImageWdLoading extends StatelessWidget {
+  const KCachedNetworkImageWdLoading({
     Key? key,
     required this.imageUrl,
     this.borderRadius = const BorderRadius.all(Radius.zero),
     this.height = 200,
     this.width = double.infinity,
+    this.borderWidth,
     this.fit = BoxFit.cover,
     this.child,
     this.padding,
     this.margin,
+    this.borderColor,
   }) : super(key: key);
 
   final String imageUrl;
   final BorderRadius borderRadius;
   final BoxFit? fit;
-  final double? height, width;
+  final double? height, width, borderWidth;
   final Widget? child;
   final EdgeInsetsGeometry? padding, margin;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
-    const defaultImage =
-        'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
-
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: height ?? double.infinity,
-        maxWidth: width ?? double.infinity,
-      ),
-      child: CachedNetworkImage(
-        imageUrl:
-            imageUrl.isNotEmpty ? "${APIRoute.baseURL}$imageUrl" : defaultImage,
-        fit: fit,
-        imageBuilder: (context, imageProvider) {
-          return ClipRRect(
-            borderRadius: borderRadius,
-            child: Container(
-              width: width ?? double.infinity,
-              height: height ?? double.infinity,
-              padding: padding,
-              margin: margin,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                color: Colors.grey[200],
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: child,
-            ),
-          );
-        },
-        height: height,
-        width: width,
-        progressIndicatorBuilder: (context, url, progress) => Center(
-          child: SizedBox(
-            height: 30.h,
-            width: 30.h,
-            child: CircularProgressIndicator(
-              value: progress.progress,
-              strokeWidth: .8.w,
-            ),
-          ),
-        ),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-        // placeholder: (context, url) => const Icon(Icons.error),
-      ),
-    );
-  }
-}
-
-class KCachedNetworkImage extends HookConsumerWidget {
-  const KCachedNetworkImage({
-    Key? key,
-    required this.imageUrl,
-    this.borderRadius = const BorderRadius.all(Radius.zero),
-    this.height,
-    this.width,
-    this.fit = BoxFit.fitWidth,
-    this.child,
-    this.padding,
-    this.margin,
-    this.backgroundColor,
-  }) : super(key: key);
-
-  final String imageUrl;
-  final BorderRadius borderRadius;
-  final BoxFit? fit;
-  final double? height, width;
-  final Widget? child;
-  final EdgeInsetsGeometry? padding, margin;
-  final Color? backgroundColor;
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final isError = useState(false);
-
-    return Container(
-      padding: margin,
-      child: !isError.value
-          ? Ink.image(
-              image: CachedNetworkImageProvider(
-                "${APIRoute.baseURL}$imageUrl",
-                errorListener: () {
-                  isError.value = true;
-                },
-              ),
-              fit: fit,
-              height: height ?? double.infinity,
-              width: width ?? double.infinity,
-              padding: padding ?? EdgeInsets.zero,
-            )
-          : Container(
-              alignment: Alignment.center,
-              color: context.color.shadow.withOpacity(.1),
-              child: Icon(
-                IconlyBroken.image,
-                size: 30.sp,
-              ),
-            ),
-    );
-  }
-}
-
-class KCachedNetworkImageLoading extends StatelessWidget {
-  const KCachedNetworkImageLoading({
-    Key? key,
-    required this.imageUrl,
-    this.borderRadius = const BorderRadius.all(Radius.zero),
-    this.height,
-    this.width,
-    this.fit = BoxFit.cover,
-    this.child,
-    this.padding,
-    this.margin,
-    this.backgroundColor,
-  }) : super(key: key);
-
-  final String imageUrl;
-  final BorderRadius borderRadius;
-  final BoxFit? fit;
-  final double? height, width;
-  final Widget? child;
-  final EdgeInsetsGeometry? padding, margin;
-  final Color? backgroundColor;
-
-  @override
-  Widget build(BuildContext context) {
-    //const defaultImage = 'https://i.stack.imgur.com/vT8DJ.gif';
-
     return CachedNetworkImage(
-      imageUrl: "${APIRoute.baseURL}$imageUrl",
+      imageUrl: APIRoute.baseURL + imageUrl,
       fit: fit,
       imageBuilder: (context, imageProvider) {
-        return ClipRRect(
-          borderRadius: borderRadius,
+        return Hero(
+          tag: imageUrl,
           child: Container(
             width: width ?? double.infinity,
             height: height ?? double.infinity,
             padding: padding,
             margin: margin,
+            clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
               borderRadius: borderRadius,
-              color: backgroundColor ?? Colors.transparent,
+              border: Border.all(
+                color: borderColor ?? Colors.transparent,
+                width: borderWidth ?? 1.w,
+              ),
               image: DecorationImage(
                 image: imageProvider,
                 fit: BoxFit.cover,
@@ -195,14 +135,37 @@ class KCachedNetworkImageLoading extends StatelessWidget {
           ),
         ),
       ),
-      errorWidget: (context, url, error) => Container(
-        alignment: Alignment.center,
-        color: context.color.shadow.withOpacity(.1),
-        child: Icon(
-          IconlyBroken.image,
-          size: 30.sp,
-        ),
-      ),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+      // placeholder: (context, url) => const Icon(Icons.error),
     );
+  }
+}
+
+class KCachedNetworkImage extends StatelessWidget {
+  const KCachedNetworkImage({
+    Key? key,
+    required this.imageUrl,
+    this.height = 200,
+    this.width = double.infinity,
+    this.fit = BoxFit.cover,
+  }) : super(key: key);
+
+  final String imageUrl;
+
+  final BoxFit? fit;
+  final double? height, width;
+
+  @override
+  Widget build(BuildContext context) {
+    return imageUrl.isEmpty
+        ? const SizedBox.expand()
+        : CachedNetworkImage(
+            imageUrl: "${APIRoute.baseURL}$imageUrl",
+            fit: fit,
+            height: height,
+            width: width,
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+            // placeholder: (context, url) => const Icon(Icons.error),
+          );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:iconly/iconly.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 import '../home/home_screen.dart';
 import '../settings/settings_screen.dart';
@@ -38,20 +38,18 @@ class MainNav extends HookConsumerWidget {
         animationDuration: const Duration(milliseconds: 500),
         destinations: const [
           NavigationDestination(
-            icon: Icon(IconlyLight.home),
-            selectedIcon: Icon(
-              IconlyBold.home,
-            ),
+            icon: Icon(EvaIcons.home),
+            selectedIcon: Icon(EvaIcons.home_outline),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(IconlyLight.profile),
-            selectedIcon: Icon(IconlyBold.profile),
+            icon: Icon(EvaIcons.person),
+            selectedIcon: Icon(EvaIcons.person_outline),
             label: 'Profile',
           ),
           NavigationDestination(
-            icon: Icon(IconlyLight.setting),
-            selectedIcon: Icon(IconlyBold.setting),
+            icon: Icon(EvaIcons.settings),
+            selectedIcon: Icon(EvaIcons.settings_outline),
             label: 'Settings',
           ),
         ],

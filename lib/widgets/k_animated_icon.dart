@@ -1,7 +1,7 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class KAnimatedIcon extends HookConsumerWidget {
   const KAnimatedIcon({Key? key}) : super(key: key);
@@ -18,9 +18,9 @@ class KAnimatedIcon extends HookConsumerWidget {
                 child: FadeTransition(opacity: anim, child: child),
               ),
           child: currIndex.value == true
-              ? const Icon(EvaIcons.arrowDown, key: ValueKey('icon1'))
+              ? const Icon(EvaIcons.arrow_down, key: ValueKey('icon1'))
               : const Icon(
-                  EvaIcons.arrowDownOutline,
+                  EvaIcons.arrow_down_outline,
                   key: ValueKey('icon2'),
                 )),
       onPressed: () {

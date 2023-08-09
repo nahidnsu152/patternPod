@@ -12,10 +12,18 @@ Gap gap14 = Gap(14.w);
 Gap gap16 = Gap(16.w);
 Gap gap18 = Gap(18.w);
 Gap gap20 = Gap(20.w);
+Gap gap22 = Gap(22.w);
 Gap gap24 = Gap(24.w);
+Gap gap26 = Gap(26.w);
+Gap gap28 = Gap(28.w);
+Gap gap30 = Gap(30.w);
+Gap gap32 = Gap(32.w);
+Gap gap34 = Gap(34.w);
 Gap gap36 = Gap(36.w);
+Gap gap38 = Gap(38.w);
 Gap gap40 = Gap(40.w);
 Gap gap48 = Gap(48.w);
+Gap gap56 = Gap(56.w);
 
 EdgeInsets padding0 = EdgeInsets.all(0.r);
 EdgeInsets padding2 = EdgeInsets.all(2.r);
@@ -106,6 +114,39 @@ EdgeInsets paddingRight22 = EdgeInsets.only(right: 22.w);
 EdgeInsets paddingRight24 = EdgeInsets.only(right: 24.w);
 EdgeInsets paddingRight30 = EdgeInsets.only(right: 30.w);
 
+EdgeInsets paddingSymmetric10 = EdgeInsets.symmetric(
+  horizontal: 10.w,
+  vertical: 10.h,
+);
+EdgeInsets paddingSymmetric12 = EdgeInsets.symmetric(
+  horizontal: 12.w,
+  vertical: 12.h,
+);
+EdgeInsets paddingSymmetric14 = EdgeInsets.symmetric(
+  horizontal: 14.w,
+  vertical: 14.h,
+);
+EdgeInsets paddingSymmetric16 = EdgeInsets.symmetric(
+  horizontal: 16.w,
+  vertical: 16.h,
+);
+EdgeInsets paddingSymmetric18 = EdgeInsets.symmetric(
+  horizontal: 18.w,
+  vertical: 18.h,
+);
+EdgeInsets paddingSymmetric20 = EdgeInsets.symmetric(
+  horizontal: 20.w,
+  vertical: 20.h,
+);
+EdgeInsets paddingSymmetric22 = EdgeInsets.symmetric(
+  horizontal: 22.w,
+  vertical: 22.h,
+);
+EdgeInsets paddingSymmetric24 = EdgeInsets.symmetric(
+  horizontal: 24.w,
+  vertical: 24.h,
+);
+
 EdgeInsets marginV2 = EdgeInsets.symmetric(vertical: 2.h);
 EdgeInsets marginV4 = EdgeInsets.symmetric(vertical: 4.h);
 EdgeInsets marginV6 = EdgeInsets.symmetric(vertical: 6.h);
@@ -194,6 +235,39 @@ EdgeInsets margin20 = EdgeInsets.all(20.r);
 EdgeInsets margin22 = EdgeInsets.all(22.r);
 EdgeInsets margin24 = EdgeInsets.all(24.r);
 
+EdgeInsets marginSymmetric10 = EdgeInsets.symmetric(
+  horizontal: 10.w,
+  vertical: 10.h,
+);
+EdgeInsets marginSymmetric12 = EdgeInsets.symmetric(
+  horizontal: 12.w,
+  vertical: 12.h,
+);
+EdgeInsets marginSymmetric14 = EdgeInsets.symmetric(
+  horizontal: 14.w,
+  vertical: 14.h,
+);
+EdgeInsets marginSymmetric16 = EdgeInsets.symmetric(
+  horizontal: 16.w,
+  vertical: 16.h,
+);
+EdgeInsets marginSymmetric18 = EdgeInsets.symmetric(
+  horizontal: 18.w,
+  vertical: 18.h,
+);
+EdgeInsets marginSymmetric20 = EdgeInsets.symmetric(
+  horizontal: 20.w,
+  vertical: 20.h,
+);
+EdgeInsets marginSymmetric22 = EdgeInsets.symmetric(
+  horizontal: 22.w,
+  vertical: 22.h,
+);
+EdgeInsets marginSymmetric24 = EdgeInsets.symmetric(
+  horizontal: 24.w,
+  vertical: 24.h,
+);
+
 BorderRadius radius4 = BorderRadius.circular(4.r);
 BorderRadius radius6 = BorderRadius.circular(6.r);
 BorderRadius radius8 = BorderRadius.circular(8.r);
@@ -205,6 +279,9 @@ BorderRadius radius18 = BorderRadius.circular(18.r);
 BorderRadius radius20 = BorderRadius.circular(20.r);
 BorderRadius radius22 = BorderRadius.circular(22.r);
 BorderRadius radius24 = BorderRadius.circular(24.r);
+BorderRadius radius26 = BorderRadius.circular(26.r);
+BorderRadius radius28 = BorderRadius.circular(28.r);
+BorderRadius radius30 = BorderRadius.circular(30.r);
 
 MainAxisAlignment mainStart = MainAxisAlignment.start;
 MainAxisAlignment mainCenter = MainAxisAlignment.center;
@@ -218,7 +295,7 @@ MainAxisSize mainMin = MainAxisSize.min;
 
 CrossAxisAlignment crossStart = CrossAxisAlignment.start;
 CrossAxisAlignment crossCenter = CrossAxisAlignment.center;
-CrossAxisAlignment crossEnd = CrossAxisAlignment.end;
+CrossAxisAlignment crossend = CrossAxisAlignment.end;
 CrossAxisAlignment crossStretch = CrossAxisAlignment.stretch;
 
 final kDivider = Divider(
