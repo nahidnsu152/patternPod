@@ -164,26 +164,46 @@ extension DateTimeExtension on DateTime {
 }
 
 extension NumberConverter on num {
-  static const Map<String, String> arabicDigits = <String, String>{
-    '0': '\u0660',
-    '1': '\u0661',
-    '2': '\u0662',
-    '3': '\u0663',
-    '4': '\u0664',
-    '5': '\u0665',
-    '6': '\u0666',
-    '7': '\u0667',
-    '8': '\u0668',
-    '9': '\u0669',
+  static const Map<String, String> banglaDigit = <String, String>{
+    '0': '০',
+    '1': '১',
+    '2': '২',
+    '3': '৩',
+    '4': '৪',
+    '5': '৫',
+    '6': '৬',
+    '7': '৭',
+    '8': '৮',
+    '9': '৯',
   };
 
-  String toArabicDigits() {
+  static const Map<String, String> banglaMonth = <String, String>{
+    '1': 'জানুয়ারি',
+    '2': 'ফেব্রুয়ারি',
+    '3': 'মার্চ',
+    '4': 'এপ্রিল',
+    '5': 'মে',
+    '6': 'জুন',
+    '7': 'জুলাই',
+    '8': 'আগস্ট',
+    '9': 'সেপ্টেম্বর',
+    '10': 'অক্টোবর',
+    '11': 'নভেম্বর',
+    '12': 'ডিসেম্বর'
+  };
+
+  String toBanglaDigit() {
     final String number = toString();
     StringBuffer sb = StringBuffer();
     for (int i = 0; i < number.length; i++) {
-      sb.write(arabicDigits[number[i]] ?? number[i]);
+      sb.write(banglaDigit[number[i]] ?? number[i]);
     }
     return sb.toString();
+  }
+
+  String toBanglaMonth() {
+    final String month = toString();
+    return banglaMonth[month] ?? month;
   }
 }
 
