@@ -40,6 +40,72 @@ class KElevatedButton extends HookConsumerWidget {
   }
 }
 
+// class KElevatedButton extends HookConsumerWidget {
+//   const KElevatedButton({
+//     Key? key,
+//     required this.onPressed,
+//     required this.text,
+//     this.backgroundColor,
+//     this.foregroundColor,
+//     this.borderRadius,
+//     this.icon,
+//     this.buttonHeight = 0,
+//     this.textStyle,
+//   }) : super(key: key);
+
+//   final String text;
+//   final Color? backgroundColor;
+//   final Color? foregroundColor;
+//   final BorderRadius? borderRadius;
+//   final VoidCallback? onPressed;
+//   final Icon? icon;
+//   final double buttonHeight;
+//   final TextStyle? textStyle;
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return ElevatedButton(
+//       style: ElevatedButton.styleFrom(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: borderRadius ?? radius10,
+//         ),
+//         foregroundColor: foregroundColor ?? Colors.white,
+//         backgroundColor: backgroundColor ?? CustomColor.primaryLight100,
+//         minimumSize: buttonHeight == 0
+//             ? Size.fromHeight(48.h)
+//             : Size.fromHeight(buttonHeight.h),
+//       ),
+//       onPressed: onPressed,
+//       child: icon != null
+//           ? Row(
+//               mainAxisAlignment: mainCenter,
+//               children: [
+//                 icon!,
+//                 gap12,
+//                 Text(
+//                   text,
+//                   style: textStyle ??
+//                       context.button.copyWith(
+//                         color: foregroundColor ?? Colors.white,
+//                         fontWeight: FontWeight.w600,
+//                         fontSize: Dimensions.mediumTextSize,
+//                       ),
+//                 ),
+//               ],
+//             )
+//           : Text(
+//               text,
+//               style: textStyle ??
+//                   context.button.copyWith(
+//                     color: foregroundColor ?? Colors.white,
+//                     fontWeight: FontWeight.w600,
+//                     fontSize: Dimensions.mediumTextSize,
+//                   ),
+//             ),
+//     );
+//   }
+// }
+
 class KOutlinedButton extends HookConsumerWidget {
   const KOutlinedButton({
     Key? key,

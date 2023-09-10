@@ -27,7 +27,6 @@ class KCircleAvatar extends StatelessWidget {
     return KInkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20.w),
-      padding: EdgeInsets.all(4.w),
       child: CircleAvatar(
         radius: enableBorder ? radius + 1 : radius - 1,
         backgroundColor: bgColor ?? Theme.of(context).colorScheme.primary,
