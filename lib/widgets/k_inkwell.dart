@@ -10,7 +10,6 @@ class KInkWell extends StatelessWidget {
       this.borderRadius,
       this.radius,
       this.rippleColor,
-      this.padding,
       this.backgroundColor})
       : super(key: key);
 
@@ -19,7 +18,6 @@ class KInkWell extends StatelessWidget {
   final BorderRadius? borderRadius;
   final double? radius;
   final Color? rippleColor, backgroundColor;
-  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -29,30 +27,50 @@ class KInkWell extends StatelessWidget {
         onTap: onTap,
         borderRadius: borderRadius,
         radius: radius,
-
         highlightColor: context.color.onPrimaryContainer.withOpacity(.1),
         splashColor: rippleColor?.withOpacity(.12) ??
             context.color.onPrimaryContainer.withOpacity(.12),
-        // overlayColor: MaterialStateProperty.resolveWith((states) {
-        //   if (states.contains(MaterialState.hovered)) {
-        //     return rippleColor?.withOpacity(.12) ??
-        //         context.color.onPrimaryContainer.withOpacity(0.12);
-        //   }
-        //   if (states.contains(MaterialState.focused)) {
-        //     return rippleColor?.withOpacity(.12) ??
-        //         context.color.onPrimaryContainer.withOpacity(0.12);
-        //   }
-        //   if (states.contains(MaterialState.pressed)) {
-        //     return rippleColor?.withOpacity(.12) ??
-        //         context.color.onPrimaryContainer.withOpacity(0.12);
-        //   }
-        //   if (states.contains(MaterialState.selected)) {
-        //     return rippleColor?.withOpacity(.12) ??
-        //         context.color.onPrimaryContainer.withOpacity(0.12);
-        //   }
-        //   return null;
-        // }),
         child: child,
+      ),
+    );
+  }
+}
+
+class KCircleInkWell extends StatelessWidget {
+  const KCircleInkWell(
+      {Key? key,
+      required this.child,
+      this.onTap,
+      this.rippleColor,
+      this.padding,
+      this.backgroundColor})
+      : super(key: key);
+
+  final VoidCallback? onTap;
+  final Widget child;
+  final Color? rippleColor, backgroundColor;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+      ),
+      child: Material(
+        color: backgroundColor ?? Colors.transparent,
+        shape: const CircleBorder(),
+        child: InkWell(
+          splashColor: rippleColor?.withOpacity(.12) ??
+              context.color.onPrimaryContainer.withOpacity(.12),
+          onTap: onTap,
+          customBorder: const CircleBorder(),
+          child: Ink(
+            decoration: const BoxDecoration(shape: BoxShape.circle),
+            padding: padding,
+            child: child,
+          ),
+        ),
       ),
     );
   }
