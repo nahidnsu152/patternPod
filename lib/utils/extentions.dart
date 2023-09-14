@@ -161,6 +161,16 @@ extension DateTimeExtension on DateTime {
   bool isSameDate(DateTime other) {
     return year == other.year && month == other.month && day == other.day;
   }
+
+  suffixDateFormat() {
+    var suffix = "th";
+    var digit = day % 10;
+    if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
+      suffix = ["st", "nd", "rd"][digit - 1];
+    }
+
+    return DateFormat("d'$suffix 'MMMM , yyyy").format(this);
+  }
 }
 
 extension NumberConverter on num {
