@@ -19,6 +19,7 @@ class KTextFormField extends HookConsumerWidget {
     this.onTap,
     this.prefix,
     this.suffix,
+    this.prefixIcon,
     this.suffixIcon,
     this.validator,
     this.focusNode,
@@ -27,7 +28,12 @@ class KTextFormField extends HookConsumerWidget {
     this.onChanged,
     this.textInputAction,
     this.maxLines = 1,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 12),
+    this.fillColor,
+    this.inputBorder,
+    this.contentPadding = const EdgeInsets.symmetric(
+      horizontal: 12,
+      vertical: 12,
+    ),
     this.onFieldSubmitted,
   }) : super(key: key);
 
@@ -37,7 +43,7 @@ class KTextFormField extends HookConsumerWidget {
   final Widget? icon;
   final bool readOnly, isLabel;
   final VoidCallback? onTap;
-  final Widget? prefix, suffix, suffixIcon;
+  final Widget? prefix, suffix, prefixIcon, suffixIcon;
   final String? Function(String?)? validator;
   final bool isObscure;
   final FocusNode? focusNode;
@@ -47,47 +53,44 @@ class KTextFormField extends HookConsumerWidget {
   final int? maxLines;
   final EdgeInsetsGeometry contentPadding;
   final void Function(String)? onFieldSubmitted;
+  final Color? fillColor;
+  final InputBorder? inputBorder;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hideText = useState(true);
-    final border = OutlineInputBorder(
+    final border = UnderlineInputBorder(
       borderRadius: radius10,
-      borderSide: BorderSide(
-        color: context.color.secondaryContainer.withOpacity(0.5),
-        width: 2.w,
+      borderSide: const BorderSide(
+        color: Colors.black,
       ),
     );
     return TextFormField(
       obscureText: isObscure ? hideText.value : false,
       controller: controller,
       readOnly: readOnly,
+      cursorHeight: 20.h,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: CustomStyle.textFieldStyle,
-      cursorColor: context.color.secondaryContainer,
+      cursorColor: Colors.black,
       cursorWidth: 2.w,
       textAlign: textAlign,
       keyboardType: keyboardType,
-      maxLines: maxLines,
+      maxLines: isObscure ? 1 : maxLines,
       focusNode: focusNode,
       decoration: InputDecoration(
         hintText: isLabel ? null : hintText,
         hintStyle: CustomStyle.textFieldHintStyle,
         labelText: isLabel ? hintText : null,
         contentPadding: contentPadding,
-        border: border,
-        enabledBorder: border,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: radius10,
-          borderSide: BorderSide(
-            color: context.color.secondaryContainer,
-            width: 2.w,
-          ),
-        ),
+        border: inputBorder ?? border,
+        enabledBorder: inputBorder ?? border,
+        focusedBorder: inputBorder ?? border,
         filled: true,
-        fillColor: Colors.white.withOpacity(0.8),
+        fillColor: fillColor,
         prefix: prefix,
         suffix: suffix,
+        prefixIcon: prefixIcon,
         suffixIcon: isObscure
             ? KInkWell(
                 borderRadius: radius24,
