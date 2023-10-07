@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +53,7 @@ Future<void> main() async {
   runApp(
     ProviderScope(
       parent: container,
+      observers: [ProviderLog()],
       child: const MyApp(),
     ),
   );
@@ -78,9 +81,7 @@ class MyApp extends HookConsumerWidget {
             theme: MyTheme.lightTheme,
             darkTheme: MyTheme.darkTheme,
             scaffoldMessengerKey: ref.watch(scaffoldKeyProvider),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
+            routerConfig: router,
             scrollBehavior: const ScrollBehavior().copyWith(
               physics: const BouncingScrollPhysics(),
             ),
@@ -104,10 +105,8 @@ class ProviderLog extends ProviderObserver {
     Logger.i('''
 {
   "PROVIDER": "${provider.name}; ${provider.runtimeType.toString()}"
-  
+
 }''');
-    //log("$newValue");
+    log("$newValue");
   }
 }
-
-
