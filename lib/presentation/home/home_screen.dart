@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:patternpod/l10n/app_localizations_context.dart';
 import 'package:patternpod/utils/alogrithms/sort/heap_sort.dart';
 
+import '../../main.dart';
 import '../../utils/alogrithms/search/binary_search.dart';
 import '../../utils/alogrithms/search/linear_search.dart';
 import '../../utils/alogrithms/sort/bubble_sort.dart';
@@ -75,85 +77,19 @@ class HomeScreen extends HookConsumerWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Text(
-              'Home Screen',
-              style: context.titleLarge,
-            ),
-          ),
-
-          //? DateTime extention usage
-          Text(time.time24Hours()),
-
-          //? Separate List extention usage
-          Text(myExampleList.separated('-').join()),
-
-          //? Theme Slider extention usage
-          SizedBox(
-            child: ThemedSlider.withTheme(
-              value: val.value,
-              min: 0.0,
-              max: 200,
-              divisions: 200,
-              onChanged: (newVal) {
-                val.value = newVal;
-              },
-              themeData: const SliderThemeData(
-                trackHeight: 16,
-                tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 6),
-                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 16),
-                thumbColor: Color(0xffffa938),
-              ),
-            ),
-          ),
-
-          //? Notification, toast etc global file usage
+          //? Change Language
           KElevatedButton(
             onPressed: () {
-              //showNotification(title: "Nahid");
-              // showToast("Nahid");
-              // showTimePicker(context: context, initialTime: TimeOfDay.now());
-              // showFloatBottomSheet(
-              //   context,
-              //   builder: (context) => Container(
-              //     height: 200,
-              //     color: Colors.white,
-              //     child: const Center(
-              //       child: Text('This is a modal'),
-              //     ),
-              //   ),
-              // );
-
-              // showBotToastDialog(cancel: () {
-              //   Navigator.pop(context);
-              //   return null;
-              // }, confirm: () {
-              //   return null;
-              // });
+              ref.read(appLocalProvider.notifier).update(
+                    (state) => state.languageCode == 'en'
+                        ? const Locale("bn", "BD")
+                        : const Locale("en", "US"),
+                  );
             },
-            text: "Press ME",
+            foregroundColor: Colors.white,
+            text: "Change Language",
           ),
-          const KTextFormField(
-            hintText: "hintText",
-          ),
-
-          KElevatedButton(
-            onPressed: () {
-              context.push(
-                  "${QueryparameterScreen.route}?id=${10}&name=${'Nahid'}");
-            },
-            text: "Query Parameter Screen",
-          ),
-          KElevatedButton(
-            onPressed: () {
-              context.goNamed(
-                'allRoutingExample',
-                pathParameters: {'id': "10"},
-                queryParameters: {'name': 'Nahid', 'age': '25'},
-              );
-            },
-            text: "Push Named Screen",
-          ),
+          Text(context.local.demoText),
         ],
       ),
     );

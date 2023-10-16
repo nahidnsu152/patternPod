@@ -12,6 +12,10 @@ final scaffoldKeyProvider = Provider<GlobalKey<ScaffoldMessengerState>>((ref) {
   return snackbarKey;
 });
 
+final appLocalProvider = StateProvider<Locale>((ref) {
+  return const Locale("en", "US");
+});
+
 final snackBarProvider = Provider.family<
     ScaffoldFeatureController<SnackBar, SnackBarClosedReason>,
     String>((ref, String text) {

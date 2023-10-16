@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'application/global.dart';
 import 'application/local_storage/storage_handler.dart';
@@ -59,6 +60,10 @@ Future<void> main() async {
   );
 }
 
+final appLocalProvider = StateProvider<Locale>((ref) {
+  return const Locale("en", "US");
+});
+
 class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
@@ -83,6 +88,9 @@ class MyApp extends HookConsumerWidget {
             theme: MyTheme.lightTheme,
             darkTheme: MyTheme.darkTheme,
             scaffoldMessengerKey: ref.watch(scaffoldKeyProvider),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: ref.watch(appLocalProvider),
             routerConfig: router,
             scrollBehavior: const ScrollBehavior().copyWith(
               physics: const BouncingScrollPhysics(),
