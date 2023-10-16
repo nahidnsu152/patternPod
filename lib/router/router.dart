@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,29 +6,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../presentation/home/pages/all_example.dart';
 import '../presentation/home/pages/query_parameters_screen.dart';
 import '../presentation/main_nav/main_nav.dart';
-import '../presentation/main_nav/main_nav_with_rive.dart';
-import '../presentation/onborad/onboard_screen.dart';
 import '../presentation/splash/splash_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final router = RouterNotifier(ref);
 
   final listenable = ValueNotifier<bool>(true);
-
-  // ref.listen<AuthState>(authProvider, (oldUser, next) {
-  //   // This is just to trigger `notifyListeners` within the `ValueNotifier`
-  //   listenable.value = !listenable.value;
-  // });
-
   return GoRouter(
     debugLogDiagnostics: true,
     refreshListenable: listenable,
-    //redirect: router._redirectLogic,
     routes: router._routes,
-    // initialLocation: SignInScreen.route,
     errorPageBuilder: router._errorPageBuilder,
     observers: [
-      // BotToastNavigatorObserver(),
+      BotToastNavigatorObserver(),
     ],
   );
 });
@@ -77,16 +68,8 @@ class RouterNotifier extends ChangeNotifier {
           builder: (context, state) => const SplashScreen(),
         ),
         GoRoute(
-          path: OnboardScreen.route,
-          builder: (context, state) => const OnboardScreen(),
-        ),
-        GoRoute(
           path: MainNav.route,
           builder: (context, state) => const MainNav(),
-        ),
-        GoRoute(
-          path: MainNavwithRive.route,
-          builder: (context, state) => const MainNavwithRive(),
         ),
         // GoRoute(
         //   name: QueryparameterScreen.route,
