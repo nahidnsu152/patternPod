@@ -66,11 +66,13 @@ class MyApp extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mode = ref.watch(themeProvider).theme;
     final router = ref.watch(routerProvider);
-    return DismissKeyboard(
-      child: ScreenUtilInit(
-        designSize: const Size(411.4, 843.4),
-        builder: (context, child) {
-          return MaterialApp.router(
+    return ScreenUtilInit(
+      designSize: const Size(412, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return DismissKeyboard(
+          child: MaterialApp.router(
             title: KStrings.appName,
             debugShowCheckedModeBanner: false,
             themeMode: mode.isEmpty
@@ -87,9 +89,9 @@ class MyApp extends HookConsumerWidget {
             ),
             // home: child,
             builder: BotToastInit(),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
