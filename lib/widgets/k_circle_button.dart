@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class KCircleButton extends StatelessWidget {
   const KCircleButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.child,
     this.backgroundColor,
     this.size = 16,
-  }) : super(key: key);
+  });
 
   final VoidCallback onPressed;
   final Widget child;

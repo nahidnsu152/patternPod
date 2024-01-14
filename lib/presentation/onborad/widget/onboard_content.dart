@@ -6,11 +6,11 @@ import '../../../utils/utils.dart';
 
 class OnboardContent extends HookConsumerWidget {
   const OnboardContent({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
   final String image, title, description;
 

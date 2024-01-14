@@ -6,7 +6,7 @@ import '../server/api_routes.dart';
 
 class KCachedNetworkImageNoBase extends StatelessWidget {
   const KCachedNetworkImageNoBase(
-      {Key? key,
+      {super.key,
       required this.imageUrl,
       this.borderRadius = const BorderRadius.all(Radius.zero),
       this.height = 200,
@@ -16,8 +16,7 @@ class KCachedNetworkImageNoBase extends StatelessWidget {
       this.child,
       this.padding,
       this.margin,
-      this.borderColor})
-      : super(key: key);
+      this.borderColor});
 
   final String imageUrl;
   final BorderRadius borderRadius;
@@ -73,7 +72,7 @@ class KCachedNetworkImageNoBase extends StatelessWidget {
 
 class KCachedNetworkImageWdLoading extends StatelessWidget {
   const KCachedNetworkImageWdLoading({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.borderRadius = const BorderRadius.all(Radius.zero),
     this.height = 200,
@@ -84,7 +83,7 @@ class KCachedNetworkImageWdLoading extends StatelessWidget {
     this.padding,
     this.margin,
     this.borderColor,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
   final BorderRadius borderRadius;
@@ -143,12 +142,12 @@ class KCachedNetworkImageWdLoading extends StatelessWidget {
 
 class KCachedNetworkImage extends StatelessWidget {
   const KCachedNetworkImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.height = 200,
     this.width = double.infinity,
     this.fit = BoxFit.cover,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
 

@@ -3,10 +3,10 @@ import 'package:rive/rive.dart';
 
 class MenuBtn extends StatelessWidget {
   const MenuBtn({
-    Key? key,
+    super.key,
     required this.press,
     required this.riveOnInit,
-  }) : super(key: key);
+  });
 
   final VoidCallback press;
   final ValueChanged<Artboard> riveOnInit;

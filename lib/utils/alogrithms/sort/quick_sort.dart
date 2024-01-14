@@ -1,7 +1,9 @@
+import 'package:flutter_easylogger/flutter_logger.dart';
+
 List<int> quickSort(List<int> list, int low, int high) {
   if (low < high) {
     int pi = partition(list, low, high);
-    print("pivot: ${list[pi]} now at index $pi");
+    Logger.v("pivot: ${list[pi]} now at index $pi");
 
     quickSort(list, low, pi - 1);
     quickSort(list, pi + 1, high);

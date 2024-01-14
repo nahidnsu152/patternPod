@@ -5,10 +5,10 @@ import 'package:readmore/readmore.dart';
 class KReadMoreText extends StatelessWidget {
   const KReadMoreText(
     this.aboutMe, {
-    Key? key,
+    super.key,
     this.style,
     this.trimLength = 120,
-  }) : super(key: key);
+  });
 
   final String aboutMe;
   final TextStyle? style;

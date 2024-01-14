@@ -6,7 +6,7 @@ import 'k_text_form_field.dart';
 
 class KTitledTextFormField extends HookConsumerWidget {
   const KTitledTextFormField({
-    Key? key,
+    super.key,
     required this.sectionTitle,
     this.fontSize,
     this.fontWeight,
@@ -34,8 +34,7 @@ class KTitledTextFormField extends HookConsumerWidget {
     this.inputBorder,
     this.onTap,
   })  : _controller = controller,
-        _focus = focus,
-        super(key: key);
+        _focus = focus;
 
   final String? hintText;
   final TextStyle? textStyle;

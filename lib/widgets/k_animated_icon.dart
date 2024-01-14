@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class KAnimatedIcon extends HookConsumerWidget {
-  const KAnimatedIcon({Key? key}) : super(key: key);
+  const KAnimatedIcon({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currIndex = useState(true);

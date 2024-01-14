@@ -175,8 +175,7 @@ class CustomOffsetAnimation extends HookConsumerWidget {
   final Widget child;
 
   const CustomOffsetAnimation(
-      {Key? key, required this.controller, required this.child})
-      : super(key: key);
+      {super.key, required this.controller, required this.child});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -213,10 +212,10 @@ class CustomAnimationWidget extends HookConsumerWidget {
   final Widget child;
 
   const CustomAnimationWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, ref) {
@@ -252,10 +251,10 @@ class CustomAttachedAnimation extends HookConsumerWidget {
   final Widget child;
 
   const CustomAttachedAnimation({
-    Key? key,
+    super.key,
     required this.controller,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, ref) {

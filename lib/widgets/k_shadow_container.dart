@@ -1,9 +1,10 @@
-import 'k_inkwell.dart';
 import 'package:flutter/material.dart';
+
+import 'k_inkwell.dart';
 
 class KShadowContainer extends StatelessWidget {
   const KShadowContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.blurRadius = 10,
@@ -13,7 +14,7 @@ class KShadowContainer extends StatelessWidget {
     this.height,
     this.width,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   final double? height;
   final double? width;

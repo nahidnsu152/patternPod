@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -31,37 +32,37 @@ class HomeScreen extends HookConsumerWidget {
     int userValue = 3;
     int min = 0;
     int max = arr.length - 1;
-    print("Binary Search: ${binarySearch(arr, userValue, min, max)}");
+    Logger.v("Binary Search: ${binarySearch(arr, userValue, min, max)}");
 
     //? Linear Search
-    print("linear Search: ${linearSearch(arr, userValue)}");
+    Logger.v("linear Search: ${linearSearch(arr, userValue)}");
 
     //? Bubble Sort
     List<int> array = [5, 1, 4, 2, 8];
     List<int> sortedarray = bubbleSort(array);
-    print("Bubble Sort: $sortedarray");
+    Logger.v("Bubble Sort: $sortedarray");
 
     //? Insertion Sort
-    print("Insertion Sort: ${insertionSort(array)}");
+    Logger.v("Insertion Sort: ${insertionSort(array)}");
 
     //? Quick Sort
     int high = array.length - 1;
     int low = 0;
-    print("Quick Sort: ${quickSort(array, low, high)}");
+    Logger.v("Quick Sort: ${quickSort(array, low, high)}");
 
     //? Selection Sort
-    print("Selection Sort: ${selectionSort(array)}");
+    Logger.v("Selection Sort: ${selectionSort(array)}");
 
     //? Merge Sort
-    print("Merge Sort: ${mergeSort(array)}");
+    Logger.v("Merge Sort: ${mergeSort(array)}");
 
     //? Heap Sort
-    print("Heap Sort: ${heapSort(array)}");
+    Logger.v("Heap Sort: ${heapSort(array)}");
 
     //? Tim Sort
     List<int> demoList = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
     timSort(demoList);
-    print("Tim Sort: $demoList");
+    Logger.v("Tim Sort: $demoList");
 
     return Scaffold(
       backgroundColor: Colors.white,

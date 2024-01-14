@@ -134,7 +134,7 @@ class CleanError extends Equatable {
 
 class CleanFailureDialogue extends StatelessWidget {
   final CleanFailure failure;
-  const CleanFailureDialogue(this.failure, {Key? key}) : super(key: key);
+  const CleanFailureDialogue(this.failure, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -198,8 +198,7 @@ class CleanFailureDialogue extends StatelessWidget {
 
 class CleanFailureDetailsPage extends StatelessWidget {
   final CleanFailure failure;
-  const CleanFailureDetailsPage({Key? key, required this.failure})
-      : super(key: key);
+  const CleanFailureDetailsPage({super.key, required this.failure});
 
   @override
   Widget build(BuildContext context) {

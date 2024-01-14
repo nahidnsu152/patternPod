@@ -13,7 +13,7 @@ import 'widget/onboard_content.dart';
 
 class OnboardScreen extends HookConsumerWidget {
   static const route = '/onboard';
-  const OnboardScreen({Key? key}) : super(key: key);
+  const OnboardScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -97,8 +97,7 @@ class OnboardScreen extends HookConsumerWidget {
                         },
                         child: Text(
                           KStrings.skip,
-                          style:
-                              CustomStyle.onboardTitleStyle,
+                          style: CustomStyle.onboardTitleStyle,
                         ),
                       ),
                     ),

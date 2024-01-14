@@ -17,11 +17,11 @@ class WebviewScreen extends HookConsumerWidget {
       ),
       body: InAppWebView(
         initialData: InAppWebViewInitialData(data: webviewData),
-        initialOptions: InAppWebViewGroupOptions(
-          crossPlatform: InAppWebViewOptions(
-            javaScriptEnabled: true,
-          ),
-        ),
+        // initialOptions: InAppWebViewGroupOptions(
+        //   crossPlatform: InAppWebViewOptions(
+        //     javaScriptEnabled: true,
+        //   ),
+        // ),
         onWebViewCreated: (InAppWebViewController controller) {},
       ),
     );

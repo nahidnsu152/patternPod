@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class KListViewSeparated extends StatelessWidget {
   const KListViewSeparated({
-    Key? key,
+    super.key,
     this.shrinkWrap = false,
     this.physics = const BouncingScrollPhysics(),
     required this.builder,
@@ -14,7 +14,7 @@ class KListViewSeparated extends StatelessWidget {
     this.controller,
     this.edgePadding,
     this.padding,
-  }) : super(key: key);
+  });
 
   final bool shrinkWrap;
   final ScrollPhysics physics;

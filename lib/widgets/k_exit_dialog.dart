@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class KExitDialog extends StatelessWidget {
   const KExitDialog({
-    Key? key,
+    super.key,
     this.content,
     this.onYesPressed,
     this.onNoPressed,
-  }) : super(key: key);
+  });
   final String? content;
   final Function? onYesPressed;
   final Function? onNoPressed;

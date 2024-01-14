@@ -3,10 +3,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class KRatingBar extends StatelessWidget {
   const KRatingBar({
-    Key? key,
+    super.key,
     required this.rate,
     this.itemSize = 16,
-  }) : super(key: key);
+  });
 
   final double rate;
   final double itemSize;

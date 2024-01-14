@@ -6,7 +6,7 @@ import '../utils/utils.dart';
 
 class KTitledCustomDropDown<T> extends StatelessWidget {
   const KTitledCustomDropDown({
-    Key? key,
+    super.key,
     required this.title,
     this.titleTextStyle,
     this.fontSize,
@@ -16,7 +16,7 @@ class KTitledCustomDropDown<T> extends StatelessWidget {
     required this.list,
     required this.item,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final String title;
   final TextStyle? titleTextStyle;

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class KIconCircleButton extends StatelessWidget {
   const KIconCircleButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.child,
     this.backgroundColor,
     this.padding = 8,
-  }) : super(key: key);
+  });
   final VoidCallback? onTap;
   final Widget child;
   final double padding;

@@ -9,7 +9,7 @@ import 'k_inkwell.dart';
 
 class KTextFormField extends HookConsumerWidget {
   const KTextFormField({
-    Key? key,
+    super.key,
     this.controller,
     required this.hintText,
     this.textAlign = TextAlign.start,
@@ -35,7 +35,7 @@ class KTextFormField extends HookConsumerWidget {
       vertical: 12,
     ),
     this.onFieldSubmitted,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final String hintText;

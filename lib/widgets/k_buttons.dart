@@ -7,12 +7,12 @@ import 'widgets.dart';
 
 class KElevatedButton extends HookConsumerWidget {
   const KElevatedButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.text,
     this.backgroundColor,
     this.foregroundColor,
-  }) : super(key: key);
+  });
 
   final String text;
   final Color? backgroundColor;
@@ -108,12 +108,12 @@ class KElevatedButton extends HookConsumerWidget {
 
 class KOutlinedButton extends HookConsumerWidget {
   const KOutlinedButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.text,
     this.backgroundColor,
     this.foregroundColor,
-  }) : super(key: key);
+  });
 
   final String text;
 
@@ -147,13 +147,13 @@ class KOutlinedButton extends HookConsumerWidget {
 
 class KTextButton extends StatelessWidget {
   const KTextButton({
-    Key? key,
+    super.key,
     required this.child,
     required this.onPressed,
     this.borderRadius = BorderRadius.zero,
     this.padding = EdgeInsets.zero,
     this.style,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback onPressed;

@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class KDarkerBGContainer extends StatelessWidget {
   const KDarkerBGContainer(
-      {Key? key,
+      {super.key,
       required this.borderRadius,
       required this.padding,
       required this.child,
       this.width,
-      this.height})
-      : super(key: key);
+      this.height});
 
   final double borderRadius, padding;
   final Widget child;

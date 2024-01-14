@@ -5,7 +5,7 @@ const Duration _kExpand = Duration(milliseconds: 200);
 
 class KExpansionTile extends StatefulWidget {
   const KExpansionTile({
-    Key? key,
+    super.key,
     this.leading,
     required this.title,
     this.subtitle,
@@ -29,12 +29,11 @@ class KExpansionTile extends StatefulWidget {
     this.trailingIcon2,
     this.hasBorder = true,
     this.borderColor,
-  })  : assert(
+  }) : assert(
           expandedCrossAxisAlignment != CrossAxisAlignment.baseline,
           'CrossAxisAlignment.baseline is not supported since the expanded children '
           'are aligned in a column, not a row. Try to use another constant.',
-        ),
-        super(key: key);
+        );
 
   final Widget? leading;
 

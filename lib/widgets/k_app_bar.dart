@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class KAppBar extends StatelessWidget implements PreferredSizeWidget {
   const KAppBar({
-    Key? key,
+    super.key,
     required this.titleText,
-  }) : super(key: key);
+  });
 
   final String titleText;
 

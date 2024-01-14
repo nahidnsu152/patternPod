@@ -4,14 +4,13 @@ import '../../utils/text_theme_style_x.dart';
 
 class KInkWell extends StatelessWidget {
   const KInkWell(
-      {Key? key,
+      {super.key,
       required this.child,
       this.onTap,
       this.borderRadius,
       this.radius,
       this.rippleColor,
-      this.backgroundColor})
-      : super(key: key);
+      this.backgroundColor});
 
   final VoidCallback? onTap;
   final Widget child;
@@ -38,13 +37,12 @@ class KInkWell extends StatelessWidget {
 
 class KCircleInkWell extends StatelessWidget {
   const KCircleInkWell(
-      {Key? key,
+      {super.key,
       required this.child,
       this.onTap,
       this.rippleColor,
       this.padding,
-      this.backgroundColor})
-      : super(key: key);
+      this.backgroundColor});
 
   final VoidCallback? onTap;
   final Widget child;
