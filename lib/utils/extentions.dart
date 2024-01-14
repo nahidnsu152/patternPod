@@ -129,31 +129,37 @@ extension ExtendedText on Widget {
 }
 
 extension DateTimeExtension on DateTime {
-  String get humanizeDate {
-    return "$day/$month/$year ";
-  }
+  String get humanizeDate => "$day/$month/$year ";
 
-  String yearMonthdate() {
+  String get dateTimeFull => DateFormat()
+      .add_yMMMd()
+      .add_Hm()
+      .format(toLocal()); // January 10, 2024 5:04:14 PM
+
+  String get dateTimeShort =>
+      DateFormat().format(toLocal()); // Jan 10, 2024 17:04
+
+  String get yearMonthdate {
     final formatter = DateFormat('yyyy-MM-dd');
     return formatter.format(this);
   }
 
-  String dateTime12Hours() {
+  String get dateTime12Hours {
     final formatter = DateFormat('dd/MM/yyyy hh:mm aa');
     return formatter.format(this);
   }
 
-  String dateTime24Hours() {
+  String get dateTime24Hours {
     final formatter = DateFormat('dd/MM/yyyy HH:mm');
     return formatter.format(this);
   }
 
-  String time12Hours() {
+  String get time12Hours {
     final formatter = DateFormat('hh:mm aa');
     return formatter.format(this);
   }
 
-  String time24Hours() {
+  String get time24Hours {
     final formatter = DateFormat('HH:mm');
     return formatter.format(this);
   }
@@ -202,7 +208,7 @@ extension NumberConverter on num {
     '12': 'ডিসেম্বর'
   };
 
-  String toBanglaDigit() {
+  String get toBanglaDigit {
     final String number = toString();
     StringBuffer sb = StringBuffer();
     for (int i = 0; i < number.length; i++) {
@@ -211,7 +217,7 @@ extension NumberConverter on num {
     return sb.toString();
   }
 
-  String toBanglaMonth() {
+  String get toBanglaMonth {
     final String month = toString();
     return banglaMonth[month] ?? month;
   }

@@ -6,14 +6,14 @@ import 'widgets.dart';
 
 class KCircleAvatar extends StatelessWidget {
   const KCircleAvatar({
-    Key? key,
+    super.key,
     required this.imgUrl,
     this.radius = 20,
     this.onTap,
     this.icon,
     this.enableBorder = true,
     this.bgColor,
-  }) : super(key: key);
+  });
 
   final String imgUrl;
   final double radius;
@@ -36,7 +36,8 @@ class KCircleAvatar extends StatelessWidget {
           backgroundImage: imgUrl.isNotEmpty
               ? CachedNetworkImageProvider(
                   imgUrl,
-                  errorListener: () => const Icon(Icons.error_outline_outlined),
+                  errorListener: (err) =>
+                      const Icon(Icons.error_outline_outlined),
                 )
               : null,
           child: icon,

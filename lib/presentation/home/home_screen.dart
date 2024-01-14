@@ -83,7 +83,7 @@ class HomeScreen extends HookConsumerWidget {
           ),
 
           //? DateTime extention usage
-          Text(time.time24Hours()),
+          Text(time.time24Hours),
 
           //? Separate List extention usage
           Text(myExampleList.separated('-').join()),
